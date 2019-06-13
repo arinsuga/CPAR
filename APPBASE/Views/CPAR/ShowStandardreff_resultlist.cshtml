@@ -1,0 +1,74 @@
+﻿@model IEnumerable<APPBASE.Models.Standardreff_LookupVM>
+
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <th>Kode</th>
+            <th>Referensi Standard</th>
+            <th style="text-align:center;">
+            </th>
+        </tr>
+        @{int i = 0;}
+        @foreach (var item in ViewBag.oModel_existing) {
+            <tr>
+                <td>
+                    <input type="hidden" id="STDREF_LIST[@i].STDREF_RUID" name="STDREF_LIST[@i].STDREF_RUID" class="EXISTING_ITEMS" value="@item.RUID" />
+
+                    <input type="hidden" id="STDREF_LIST[@i].STDREF_ID" name="STDREF_LIST[@i].STDREF_ID" class="EXISTING_ITEMS" value="@item.LOV_ID" />
+                    <input type="hidden" id="STDREF_LIST[@i].STDREF_NM" name="STDREF_LIST[@i].STDREF_NM" class="EXISTING_ITEMS" value="@item.LOV_NM" />
+                    @item.LOV_ID
+                </td>
+                <td>@item.LOV_NM</td>
+                <td style="text-align:center;"><button type="button" class="cmdREMOVE_ITEM btn btn-danger btn-flat"><i class="fa fa-trash-o"></i></button></td>
+            </tr>
+            i++;
+        }
+        @foreach (var item in ViewBag.oModel_selected) {
+            <tr>
+                <td>
+                    <input type="hidden" id="STDREF_LIST[@i].STDREF_RUID" name="STDREF_LIST[@i].STDREF_RUID" class="SELECTED_ITEMS" value="@item.RUID" />
+
+                    <input type="hidden" id="STDREF_LIST[@i].STDREF_ID" name="STDREF_LIST[@i].STDREF_ID" class="SELECTED_ITEMS" value="@item.LOV_ID" />
+                    <input type="hidden" id="STDREF_LIST[@i].STDREF_NM" name="STDREF_LIST[@i].STDREF_NM" class="SELECTED_ITEMS" value="@item.LOV_NM" />
+                    @item.LOV_ID
+                </td>
+                <td>@item.LOV_NM - New Item</td>
+                <td style="text-align:center;"><button type="button" class="cmdREMOVE_ITEM btn btn-danger btn-flat"><i class="fa fa-trash-o"></i></button></td>
+            </tr>
+            i++;
+        }
+        @foreach (var item in ViewBag.oModel_selectnew) {
+            <tr>
+                <td>
+                    <input type="hidden" id="STDREF_LIST[@i].STDREF_RUID" name="STDREF_LIST[@i].STDREF_RUID" class="SELECTED_ITEMS" value="@item.RUID" />
+
+                    <input type="hidden" id="STDREF_LIST[@i].STDREF_ID" name="STDREF_LIST[@i].STDREF_ID" class="SELECTED_ITEMS" value="@item.LOV_ID" />
+                    <input type="hidden" id="STDREF_LIST[@i].STDREF_NM" name="STDREF_LIST[@i].STDREF_NM" class="SELECTED_ITEMS" value="@item.LOV_NM" />
+                    @item.LOV_ID
+                </td>
+                <td>@item.LOV_NM - New Item</td>
+                <td style="text-align:center;"><button type="button" class="cmdREMOVE_ITEM btn btn-danger btn-flat"><i class="fa fa-trash-o"></i></button></td>
+            </tr>
+            i++;
+        }
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+
+        $(".cmdREMOVE_ITEM").click(function () {
+            $(this).parent().parent().remove();
+        }); //End  $(".LOOKUPROW").click()
+
+    });       //End $(document).ready
+</script>
+

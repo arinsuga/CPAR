@@ -1,0 +1,82 @@
+﻿@model IEnumerable<APPBASE.Models.Employeests>
+
+@{
+    ViewBag.Title = "Daftar Status Kepegawaian";
+    Layout = "~/Views/Shared/_LayoutLookup.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+
+                @if (Model == null) { 
+                    <table class="table table-hover">
+                        <tr>
+                            <td style="width:100%;text-align:center;">@{Html.RenderPartial("_PartialEmpty");}</td>
+                        </tr>
+                    </table>
+                }
+
+                @if (Model != null)
+                {
+
+                <div class="input-group">
+                    <input type="text" name="searchValue" id="searchValue" class="form-control input-sm pull-right FieldEnableAlways" placeholder="Filter Data Status Kepegawaian"/>
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="LOOKUPROW">
+                        <td class="SEARCHABLE_ROWS" style="width:50%;">
+                            @Html.DisplayFor(modelItem => item.LOV_NM)
+                            <input type="hidden" class="RUID" value="@Html.DisplayFor(modelitem => item.RUID)" />
+                            <input type="hidden" class="ID" value="@Html.DisplayFor(modelitem => item.LOV_ID)" />
+                            <input type="hidden" class="NAME" value="@Html.DisplayFor(modelitem => item.LOV_NM)" />
+                        </td>
+                    </tr>
+                }
+                    </tbody>
+                </table>
+                }
+
+    </div><!-- /.col-xs-12 -->
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("#DialogLookupTitle").text("@ViewBag.Title");
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+        $("#DialogLookupWait").hide();
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        $(".LOOKUPROW").click(function () {
+            var vsRUID = $(this).children().children(".RUID").val();
+            var vsID = $(this).children().children(".ID").val();
+            var vsNAME = $(this).children().children(".NAME").val();
+
+            var vsRUID_TAG = '@ViewBag.RUID_TAG';
+            var vsID_TAG = '@ViewBag.ID_TAG';
+            var vsNAME_TAG = '@ViewBag.NAME_TAG';
+            if (isEmptyString(vsRUID_TAG) != true) { $('#' + vsRUID_TAG).val(vsRUID); }
+            if (isEmptyString(vsID_TAG) != true) { $('#' + vsID_TAG).val(vsID); }
+            if (isEmptyString(vsNAME_TAG) != true) { $('#' + vsNAME_TAG).val(vsNAME); }
+            $('#DialogLookup').modal('hide')
+        }); //End  $(".LOOKUPROW").click()
+    });   //End $(document).ready
+</script>
+

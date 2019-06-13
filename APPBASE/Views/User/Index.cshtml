@@ -1,0 +1,81 @@
+﻿@model IEnumerable<APPBASE.Models.User_ListVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcapp
+
+@{
+    ViewBag.Title = "User Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassBP_STS = "";}
+
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        <div class="box-tools">
+            <div class="input-group">
+                <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-flat btn-sm btn-info"><i class="fa fa-search"></i></button>
+                    <a href="@Url.Action("Create")" class="btn btn-flat btn-sm btn-warning" style="margin-left:5px; color:White;"><i class="fa fa-file"></i> Tambah User</a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null) {
+                    <tr>
+                        <td colspan="4" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in Model)
+                {
+                    if (item.BP_STS == valFLAG.FLAG_INACTIVE) { vsClassBP_STS = "label label-danger"; } else { vsClassBP_STS = "label label-success"; }
+                    
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.USR_ID)</td>
+                        <td>@Html.DisplayFor(modelItem => item.USR_NM1)</td>
+                        <td><span class="@vsClassBP_STS">@Html.DisplayFor(modelItem => item.BP_STS)</span></td>
+                        
+                        <td>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-flat btn-default">Action</button>
+                              <button type="button" class="btn btn-flat btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+                                <!-- Dropdown menu links -->
+                                @if (item.BP_STS != APPBASE.Svcapp.valFLAG.FLAG_INACTIVE){
+                                    <li>@Html.ActionLink("Rubah", "Edit", new { id=item.RUID })</li>
+                                    <li>@Html.ActionLink("Detil", "Details", new { id=item.RUID })</li>
+                                    <li>@Html.ActionLink("Hapus", "Delete", new { id=item.RUID })</li>
+                                }
+
+                                @if (item.BP_STS == APPBASE.Svcapp.valFLAG.FLAG_INACTIVE){ @Html.ActionLink("Aktifkan", "Activate", new { id = item.RUID }) }
+                                else{
+                                    <li>@Html.ActionLink("Non Aktifkan", "Deactivate", new { id = item.RUID })</li>
+                                    <li>@Html.ActionLink("Hak Akses", "Role", new { id = item.RUID })</li>
+                                }
+                              </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->

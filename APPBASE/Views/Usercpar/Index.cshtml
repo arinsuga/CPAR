@@ -1,0 +1,70 @@
+﻿@model IEnumerable<APPBASE.Models.User_ListVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcapp
+
+@{
+    ViewBag.Title = "User Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm()) {
+
+string vsClassBP_STS = "";
+
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        <div class="box-tools">
+            <div class="input-group">
+                <input type="text" name="FILTER_NAMA" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Nama"/>
+                <input type="text" name="FILTER_DEPARTEMEN" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Departemen"/>
+                <input type="text" name="FILTER_ROLE" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Hak Akses"/>
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-flat btn-sm btn-info"><i class="fa fa-filter"></i> Filter</button>
+                    <a href="@Url.Action("Create")" class="btn btn-flat btn-sm btn-warning" style="margin-left:5px; color:White;"><i class="fa fa-file"></i> Tambah User</a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-header -->
+</div><!-- /.box -->
+
+<div class="row">
+
+@foreach (var item in Model)
+{
+    if (item.BP_STS == valFLAG.FLAG_INACTIVE) { vsClassBP_STS = "label label-danger"; } else { vsClassBP_STS = "label label-success"; }
+    <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+            <a href="@Url.Action("Details", new { id = item.RUID })">
+                <span class="info-box-icon"><img src="@Url.Content("~/")App_DataUpload/EmpPhoto/@Utility_FileUploadDownload.getImage_Employee(item.IMG_SRC)" alt="Foto Karyawan" /></span>
+            </a>
+            <div class="info-box-content">
+                <span class="info-box-text">
+                        <table>
+                            <tr style="border-bottom:1px solid #EFEFEF">
+                                <td>User ID</td>
+                                <td>:</td>
+                                <td>@Html.DisplayFor(modelItem => item.USR_ID)</td>
+                            </tr>
+                            <tr>
+                                <td>Hak Akses</td>
+                                <td>:</td>
+                                <td>@Html.DisplayFor(modelItem => item.ROLE_NM)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><span class="@vsClassBP_STS">@Html.DisplayFor(modelItem => item.BP_STS)</span></td>
+                                <td style="font-weight:bold; font-style:italic;">@Html.DisplayFor(modelItem => item.DEPT_NM)</td>
+                            </tr>
+                        </table>
+                </span>
+                <hr />
+                <span class="info-box-number">
+                </span>
+            </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+    </div><!-- /.col -->
+}
+</div>
+
+}

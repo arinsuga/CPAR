@@ -1,0 +1,58 @@
+﻿@model APPBASE.Models.FilterComplain_DetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        @if (ViewData.ModelState["Complain_DT10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="Complain_DT1">Periode tanggal awal</label>
+            <input type="text" id="Complain_DT1" name="Complain_DT1" value="@Html.DisplayFor(model => model.Complain_DT1)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["Complain_DT11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("Complain_DT11")
+                    </label>
+            }
+            @if (ViewData.ModelState["Complain_DT12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("Complain_DT12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+
+    <div class="col-xs-12 col-md-4">
+        @if (ViewData.ModelState["Complain_DT20"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="Complain_DT2">Periode tanggal kedua</label>
+            <input type="text" id="Complain_DT2" name="Complain_DT2" value="@Html.DisplayFor(model => model.Complain_DT2)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["Complain_DT21"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("Complain_DT21")
+                    </label>
+            }
+            @if (ViewData.ModelState["Complain_DT22"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("Complain_DT22")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+

@@ -1,0 +1,33 @@
+﻿@model APPBASE.Models.Employee_DetailVM
+@using APPBASE.Svcapp
+
+@{string vsErrClass = "";}
+                <div class="row">
+                    <div class="col-md-3 col-sm-4">
+                        <!-- Navigation - folders-->
+                        <div style="margin-top: 15px;">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li>
+                        <div style="text-align:center;">
+                            @if (Model != null)
+                            {
+                                <img src="@Url.Content("~/")App_DataUpload/EmpPhoto/@Utility_FileUploadDownload.getImage_Employee(Model.IMG_SRC)" class="img-thumbnail" alt="Foto Karyawan" />
+                            }
+                            else
+                            {
+                                <img src="@Url.Content("~/")App_DataUpload/EmpPhoto/EmpPhotoNA.jpg" class="img-thumbnail" alt="Foto Karyawan" />
+                            }
+                            <div>@Html.DisplayFor(model => model.RES_NM1)</div>
+                        </div>
+                                </li>
+                                <li class="header"></li>
+                                <li >
+                                    @{Html.RenderPartial("_Inputs_main");}
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- /.col (LEFT) -->
+                    <div class="col-md-9 col-sm-8">
+                        @{Html.RenderPartial("_Inputs_pekerjaan");}
+                    </div><!-- /.col (RIGHT) -->
+                </div><!-- /.row -->

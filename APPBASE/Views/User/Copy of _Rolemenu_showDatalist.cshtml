@@ -1,0 +1,41 @@
+﻿@model List<APPBASE.Models.Userrolemenu_ListVM>
+
+@{
+    string vsmenuGroupClass = "";
+    string vsmenuItemStyle = "";
+}
+
+
+@if (Model != null)
+{
+    <table class="table table-hover">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            if (Model[i].MNU_TYPE == "GRP") { vsmenuGroupClass = "class=\"bg-aqua\""; vsmenuItemStyle = ""; }
+            else { vsmenuGroupClass = ""; vsmenuItemStyle = "style=\"padding-left:" + (Model[i].MNU_LEVEL * 10).ToString() + "px;\""; }
+            <tr>
+                <td @Html.Raw(vsmenuGroupClass) @Html.Raw(vsmenuItemStyle)>
+                    @Model[i].MNU_CAPTION
+                    <input type="hidden" name="Userrolemenu_ListVM[@i].MNU_RUID" value="@Model[i].MNU_RUID" />
+                </td>
+            </tr>
+        }
+    </table>
+    
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+
+        /*=========================================
+        EVENTS 
+        =========================================*/
+
+        /*=========================================
+        FUNCTIONS
+        =========================================*/
+    });    //End $(document).ready
+</script>
+}
+

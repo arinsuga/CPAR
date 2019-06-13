@@ -1,0 +1,124 @@
+﻿@model APPBASE.Models.Employee_DetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; }
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.HiddenFor(model => model.CNTRY_RUID_DMCL)
+        @if (ViewData.ModelState["CNTRY_NM_DMCL0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="CNTRY_NM_DMCL">Negara</label>
+
+
+            <div class="input-group input-group-sm">
+                <input type="text" id="CNTRY_NM_DMCL" name="CNTRY_NM_DMCL" value="@Html.DisplayFor(model => model.CNTRY_NM_DMCL)" class="form-control" readonly />
+                <span class="input-group-btn">
+                    <button type="button" id="cmdLookupCNTRY_NM_DMCL" name="cmdLookupCNTRY_NM_DMCL" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup" @vsDisableButton><i class="fa fa-search"></i></button>
+                </span>
+            </div><!-- /input-group -->
+
+            
+            @if (ViewData.ModelState["CNTRY_NM_DMCL1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CNTRY_NM_DMCL1")
+                    </label>
+            }
+            @if (ViewData.ModelState["CNTRY_NM_DMCL2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CNTRY_NM_DMCL2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.HiddenFor(model => model.CITY_RUID_DMCL)
+        @if (ViewData.ModelState["CITY_NM_DMCL0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="CITY_NM_DMCL">Kota</label>
+
+
+            <div class="input-group input-group-sm">
+                <input type="text" id="CITY_NM_DMCL" name="CITY_NM_DMCL" value="@Html.DisplayFor(model => model.CITY_NM_DMCL)" class="form-control" readonly />
+                <span class="input-group-btn">
+                    <button type="button" id="cmdLookupCITY_NM_DMCL" name="cmdLookupCITY_NM_DMCL" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup" @vsDisableButton><i class="fa fa-search"></i></button>
+                </span>
+            </div><!-- /input-group -->
+
+            
+            @if (ViewData.ModelState["CITY_NM_DMCL1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CITY_NM_DMCL1")
+                    </label>
+            }
+            @if (ViewData.ModelState["CITY_NM_DMCL2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CITY_NM_DMCL2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["ZIP_DMCL0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="ZIP_DMCL">Kode Pos</label>
+            <input type="text" id="ZIP_DMCL" name="ZIP_DMCL" value="@Html.DisplayFor(model => model.ZIP_DMCL)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["ZIP_DMCL1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("ZIP_DMCL1")
+                    </label>
+            }
+            @if (ViewData.ModelState["ZIP_DMCL2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("ZIP_DMCL2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["ADDR1_DMCL0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="ADDR1_DMCL">Alamat</label>
+            <input type="text" id="ADDR1_DMCL" name="ADDR1_DMCL" value="@Html.DisplayFor(model => model.ADDR1_DMCL)" class="form-control" @vsReadonlyTextbox />
+            <input type="text" id="ADDR2_DMCL" name="ADDR2_DMCL" value="@Html.DisplayFor(model => model.ADDR2_DMCL)" class="form-control" @vsReadonlyTextbox />
+            <input type="text" id="ADDR3_DMCL" name="ADDR3_DMCL" value="@Html.DisplayFor(model => model.ADDR3_DMCL)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["ADDR1_DMCL1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("ADDR1_DMCL1")
+                    </label>
+            }
+            @if (ViewData.ModelState["ADDR1_DMCL2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("ADDR1_DMCL2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+
+

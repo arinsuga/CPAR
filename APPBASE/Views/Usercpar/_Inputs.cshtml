@@ -1,0 +1,26 @@
+﻿@model APPBASE.Models.User_DetailCPARVM
+@using APPBASE.Helpers
+@using APPBASE.Svcapp
+@using APPBASE.Svcbiz
+
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; }
+
+@Html.HiddenFor(model => model.RES_RUID, new { id = "RES_RUID" })
+
+<div class="row">
+    <div class="col-md-3 col-sm-4">
+        <!-- Navigation - folders-->
+        @{Html.RenderPartial("_Inputs_photo");}
+    </div><!-- /.col (LEFT) -->
+    <div class="col-md-9 col-sm-8">
+        @{Html.RenderPartial("_Inputs_employee");}
+    </div><!-- /.col (RIGHT) -->
+</div><!-- /.row -->
+
+@{Html.RenderPartial("_Inputs_user");}

@@ -1,0 +1,46 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("#FileimageContainer").hide(); //Optional if contains upload image field(s)
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Optional if contains upload image field(s)
+        $('#Fileimage').on('change', function () {
+            previewImage(this, '#imgUPLOAD_IMG');
+        });
+        //Command LookUp [Upload photo]
+        $("#cmdUPLOAD_IMG").click(function () {
+            $("#Fileimage").click();
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Departemen]
+        $("#cmdLookupDEPT_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'DEPT_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'DEPT_NM'; //NM
+            showLookup('Lookup/ShowDept', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command Reset
+        //Command LookUp [Employee=]
+        $("#cmdLookupROLE_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            showLookup_LoadSingle('Lookup/ShowRole_getDatalist', '', vaSearchValue,
+                                  'User/_Rolemenu_showDatalist', 'RSLTDATA_TAG',
+                                  'ROLE_RUID', '', 'ROLE_NM');
+        }); //End  $("#btnLookup").click
+        $("#cmdReset").click(function () {
+            return true;
+        });
+    });  //End $(document).ready
+</script>

@@ -1,0 +1,127 @@
+﻿@model IEnumerable<APPBASE.Models.CPAR_ListVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "PATCH HOTFIX#3" + ViewBag.Subtitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassCPAR_STS = "";}
+
+@if (ViewBag.CRUDSavedOrDelete == valFLAG.FLAG_TRUE)
+{
+    <!-- Confirm Delete -->
+    <div class="alert alert-success alert-dismissable">
+        <i class="fa fa-check"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <b>Informasi!</b> Data berhasil diperbaiki
+    </div>
+}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        <div class="box-tools">
+            <div class="input-group">
+                <input type="text" id="searchValue" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Cari Nomor CPAR"/>
+                <div class="input-group-btn">
+                    @if (ViewBag.CPAR_TYPE != valFLAG.FLAG_CPAR_TYPE_CC)
+                    {
+                        using (Html.BeginForm())
+                        {
+                            <input type="hidden" id="CPAR_TYPE" name="CPAR_TYPE" value="@ViewBag.CPAR_TYPE" />
+                            <button type="submit" class="btn btn-flat btn-sm btn-warning">PATCH Data</button>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>CPAR</th>
+                    <th>
+                        <div>Batas Tanggal</div>
+                        <div>Tanggapan</div>
+                    </th>
+                    <th>
+                        <div>Batas Tanggal</div>
+                        <div>Penyelesaian</div>
+                    </th>
+
+                    @if ((hlpConfig.SessionInfo.getAppRoleRUID() == valFLAG.FLAG_ROLE_SYSADMIN) ||
+                        (hlpConfig.SessionInfo.getAppRoleRUID() == valFLAG.FLAG_ROLE_CPAR_ADMIN))
+                    { 
+                        <th>
+                            <div>Batas Tanggal</div>
+                            <div>Verifikasi</div>
+                        </th>
+                    }
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="3" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in Model)
+                {
+                    
+                    <tr>
+                        <td class="SEARCHABLE_ROWS">
+                            
+                            <div class="text-light-blue">
+                                <span style="font-weight:bold;font-style:italic;">No. CPAR : @Html.DisplayFor(modelItem => item.CPAR_ID)</span> - @hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.CPAR_DT)
+                            </div>
+                            <p class="truncate">@item.CPAR_DESC</p>
+                        </td>
+
+                        <td>@hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.CPAR_RSPNLMT_DT)</td>
+                        <td>@hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.CPAR_FINISH_DT)</td>
+
+                    @if ((hlpConfig.SessionInfo.getAppRoleRUID() == valFLAG.FLAG_ROLE_SYSADMIN) ||
+                        (hlpConfig.SessionInfo.getAppRoleRUID() == valFLAG.FLAG_ROLE_CPAR_ADMIN))
+                    {
+                            <td>@hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.CPAR_VERLMT_DT)</td>
+                    }
+
+                        <td>
+                            @{
+                    vsClassCPAR_STS = "badge bg-yellow";
+                    if (item.CPAR_STS == valFLAG.FLAG_CPAR_STS_CLOSED) { vsClassCPAR_STS = "badge bg-green"; }
+                    if (item.CPAR_STS == valFLAG.FLAG_CPAR_STS_CANCELED) { vsClassCPAR_STS = "badge bg-red"; }
+                             }
+                            <span class="@vsClassCPAR_STS">@Html.DisplayFor(modelItem => item.CPAR_STS_NM)</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+    });   //End $(document).ready
+</script>
+
+}
+

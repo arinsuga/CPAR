@@ -1,0 +1,1009 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A404FEC5-B204-466D-AA46-D1B80E055CA3}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>APPBASE</RootNamespace>
+    <AssemblyName>APPBASE</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.4.0.3\lib\net20\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.1.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC4.5.1.0.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ControllersPosts\AccountController_Posts.cs" />
+    <Compile Include="ControllersPosts\CPAR\AuditController_Posts.cs" />
+    <Compile Include="ControllersPosts\CPAR\ComplainController_Posts.cs" />
+    <Compile Include="ControllersPosts\CPAR\ExportController_Posts.cs" />
+    <Compile Include="ControllersPosts\CPAR\LogbookComplainController_Posts.cs" />
+    <Compile Include="ControllersPosts\CPAR\CPARController_Posts.cs" />
+    <Compile Include="ControllersPosts\CPAR\LogbookCPARController_Posts.cs" />
+    <Compile Include="ControllersPosts\CPAR\StandardreffController_Posts.cs" />
+    <Compile Include="ControllersPosts\CPAR\UsercparController_Posts.cs" />
+    <Compile Include="ControllersPosts\EmployeeController_Posts.cs" />
+    <Compile Include="ControllersPosts\CPAR\ProjectController_Posts.cs" />
+    <Compile Include="ControllersPosts\UserController_Posts.cs" />
+    <Compile Include="ControllersServices\UserController_Services.cs" />
+    <Compile Include="Controllers\AppmainController.cs" />
+    <Compile Include="Controllers\CPAR\ExportController.cs" />
+    <Compile Include="Controllers\CPAR\CPARComplainController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\CPAR\AuditController.cs" />
+    <Compile Include="ControllersPosts\DepartmentController_Posts.cs" />
+    <Compile Include="Controllers\CPAR\ComplainController.cs" />
+    <Compile Include="Controllers\CPAR\CPARController.cs" />
+    <Compile Include="Controllers\CPAR\LogbookComplainController.cs" />
+    <Compile Include="Controllers\CPAR\CPAROtherController.cs" />
+    <Compile Include="Controllers\CPAR\LogbookCPARController.cs" />
+    <Compile Include="Controllers\CPAR\CPARAuditController.cs" />
+    <Compile Include="Controllers\CPAR\CPARDefactController.cs" />
+    <Compile Include="Controllers\CPAR\CPARImproveController.cs" />
+    <Compile Include="Controllers\CPAR\CPARReviewController.cs" />
+    <Compile Include="Controllers\CPAR\StandardreffController.cs" />
+    <Compile Include="Controllers\CPAR\Lookup\LookupController.cs" />
+    <Compile Include="Controllers\CPAR\Lookup\LookupController_getData.cs" />
+    <Compile Include="Controllers\CPAR\Lookup\LookupController_getDatalist.cs" />
+    <Compile Include="Controllers\CPAR\UsercparController.cs" />
+    <Compile Include="Controllers\Lookup\LookupController_getDatalist.cs" />
+    <Compile Include="Controllers\Lookup\LookupController_getData.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\CPAR\ProjectController.cs" />
+    <Compile Include="ModelsServices\Accesscontrol\Role\RoleCRUD_Services.cs" />
+    <Compile Include="ModelsServices\Accesscontrol\Role\RoleDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Chatnotify\CPARChatnotifyCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Chatnotify\CPARChatnotifyDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Chat\CPARChatCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Chat\CPARChatDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Complain\ComplainCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Complain\ComplainDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Complain\Complain_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Config_cparid\Config_cparidCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Config_cparid\Config_cparidDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\CPARStdref\CPARStdrefCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\CPARStdref\CPARStdrefDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\CPAR\CPARCPARStdrefDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\CPAR\CPAR_SETCPAR_ID_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\CPAR\CPAR_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\CPAR\CPARCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\CPAR\CPARDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Complaintype\ComplaintypeDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\CPARsts\CPARstsDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\CPARType\CPARTypeDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Standardreff\StandardreffCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Standardreff\StandardreffDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Subtype\SubtypeCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Subtype\SubtypeDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Projectsts\ProjectstsCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Projectsts\ProjectstsDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Project\ProjectCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\Project\ProjectDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\User\UserCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\User\UserDS_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\User\User_Services.cs" />
+    <Compile Include="ModelsServices\CRUD_Services.cs" />
+    <Compile Include="ModelsServices\Employee\EmployeeDS_Services.cs" />
+    <Compile Include="ModelsServices\Employee\EmployeeCRUD_Services.cs" />
+    <Compile Include="ModelsServices\Employee\Employee_Services.cs" />
+    <Compile Include="ModelsServices\LookupVM_Services.cs" />
+    <Compile Include="ModelsServices\Accesscontrol\User\UserCRUD_Services.cs" />
+    <Compile Include="ModelsServices\Accesscontrol\User\UserDS_Services.cs" />
+    <Compile Include="ModelsServices\Accesscontrol\User\User_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Audit\AuditCRUD_Services.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Audit\AuditDS_Services.cs" />
+    <Compile Include="ModelsServices\LOV\Department\DepartmentCRUD_Services.cs" />
+    <Compile Include="ModelsServices\LOV\Department\DepartmentDS_Services.cs" />
+    <Compile Include="ModelsValidations\CPAR\Chat\CPARChatPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\Chat\CPARChatPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\Complain\ComplainPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\Complain\ComplainPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\Complain\ComplainCUSTOM_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\FilterComplain\FilterComplainPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\FilterComplain\FilterComplainPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\CPAR\CPARCUSTOM_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\CPAR\CPARPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\CPAR\CPARPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\FilterCPAR\FilterCPARPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\FilterCPAR\FilterCPARPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\LOV\Audit\AuditPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\LOV\Audit\AuditPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\LOV\Standardreff\StandardreffPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\LOV\Standardreff\StandardreffPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\Project\ProjectPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\Project\ProjectPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\User\UserPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\CPAR\User\UserPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\Employee\EmployeePRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\Employee\EmployeePUB_Validation.cs" />
+    <Compile Include="ModelsValidations\Accesscontrol\User\UserPUB_Validation.cs" />
+    <Compile Include="ModelsValidations\Accesscontrol\User\UserPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\LOV\Department\DepartmentPRIV_Validation.cs" />
+    <Compile Include="ModelsValidations\LOV\Department\DepartmentPUB_Validation.cs" />
+    <Compile Include="ModelsVMs\Accesscontrol\Role\RoleVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\Chatnotify\CPARChatnotifyVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\Chat\CPARChatVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\Complain\ComplainVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\Config_cparid\Config_cparidVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\CPARStdref\CPARStdrefVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\CPAR\CPARCPARStdrefVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\CPAR\CPARVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\FilterComplain\FilterComplainVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\FilterCPAR\FilterCPARVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\LOV\Audit\AuditVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\LOV\Classaudit\ClassauditVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\LOV\Complaintype\ComplaintypeVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\LOV\CPARsts\CPARstsVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\LOV\CPARType\CPARTypeVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\LOV\Standardreff\StandardreffVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\LOV\Subtype\SubtypeVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\LOV\Projectsts\ProjectstsVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\Project\ProjectVM.cs" />
+    <Compile Include="ModelsVMs\CPAR\User\UserVM.cs" />
+    <Compile Include="ModelsVMs\LOV\Department\DepartmentVM.cs" />
+    <Compile Include="ModelsVMs\Validation\ValidationVM.cs" />
+    <Compile Include="Models\APPContext\APPContext_master.cs" />
+    <Compile Include="Models\APPContext\APPContext_accesscontrol.cs" />
+    <Compile Include="Models\APPContext\APPContext_sample.cs" />
+    <Compile Include="Models\CPAR\APPContext\APPContext_lov.cs" />
+    <Compile Include="Models\CPAR\APPContext\APPContext.cs" />
+    <Compile Include="Models\CPAR\Chatnotify\CPARChatnotifyCRUD.cs" />
+    <Compile Include="Models\CPAR\Chatnotify\CPARChatnotifyDS.cs" />
+    <Compile Include="Models\CPAR\Chat\CPARChatCRUD.cs" />
+    <Compile Include="Models\CPAR\Chat\CPARChatDS.cs" />
+    <Compile Include="Models\CPAR\Complain\ComplainCRUD.cs" />
+    <Compile Include="Models\CPAR\Complain\ComplainDS.cs" />
+    <Compile Include="Models\CPAR\Config_cparid\Config_cparidCRUD.cs" />
+    <Compile Include="Models\CPAR\CPARStdref\CPARStdrefCRUD.cs" />
+    <Compile Include="Models\CPAR\CPARStdref\CPARStdrefDS.cs" />
+    <Compile Include="Models\CPAR\LOV\Classaudit\ClassauditCRUD.cs" />
+    <Compile Include="ModelsServices\CPAR\LOV\Classaudit\ClassauditDS_Services.cs" />
+    <Compile Include="Models\CPAR\LOV\Complaintype\ComplaintypeCRUD.cs" />
+    <Compile Include="Models\CPAR\LOV\Complaintype\ComplaintypeDS.cs" />
+    <Compile Include="Models\CPAR\LOV\CPARsts\CPARstsCRUD.cs" />
+    <Compile Include="Models\CPAR\LOV\CPARType\CPARTypeCRUD.cs" />
+    <Compile Include="Models\CPAR\LOV\Standardreff\StandardreffDS.cs" />
+    <Compile Include="Models\CPAR\LOV\Standardreff\StandardreffCRUD.cs" />
+    <Compile Include="Models\CPAR\LOV\Subtype\SubtypeCRUD.cs" />
+    <Compile Include="Models\CPAR\CPAR\CPARCRUD.cs" />
+    <Compile Include="Models\CPAR\CPAR\CPARDS.cs" />
+    <Compile Include="Models\CPAR\LOV\Projectsts\ProjectstsCRUD.cs" />
+    <Compile Include="Models\CPAR\LOV\Projectsts\ProjectstsDS.cs" />
+    <Compile Include="Models\CPAR\Project\ProjectCRUD.cs" />
+    <Compile Include="Models\CPAR\Project\ProjectDS.cs" />
+    <Compile Include="Models\LOV\City\City.cs" />
+    <Compile Include="Models\CPAR\LOV\Audit\AuditCRUD.cs" />
+    <Compile Include="Models\CPAR\LOV\Audit\AuditDS.cs" />
+    <Compile Include="Models\LOV\Department\DepartmentCRUD.cs" />
+    <Compile Include="Models\Employee\EmployeeDS.cs" />
+    <Compile Include="Models\LOV\Country\Country.cs" />
+    <Compile Include="Models\LOV\Maritalsts\Maritalsts.cs" />
+    <Compile Include="Models\LOV\Sex\Sex.cs" />
+    <Compile Include="Models\LOV\Religion\Religion.cs" />
+    <Compile Include="Models\LOV\Jobtitle\Jobtitle.cs" />
+    <Compile Include="Models\Role\Role.cs" />
+    <Compile Include="Services\ValuesMenu.cs" />
+    <Compile Include="Services\Utility_FileUploadDownload.cs" />
+    <Compile Include="Services\ValuesApp.cs" />
+    <Compile Include="Services\LabelsApp.cs" />
+    <Compile Include="Services\ValuesBiz.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Lookup\LookupController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Filters\MyActionFilterAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\hlpFlags_ADDRESSType.cs" />
+    <Compile Include="Helpers\hlpConfig.cs" />
+    <Compile Include="Helpers\hlpConvertionAndFormating.cs" />
+    <Compile Include="Helpers\hlpDBMS.cs" />
+    <Compile Include="Helpers\hlpFlags_CRUDOption.cs" />
+    <Compile Include="Helpers\hlpGeneral.cs" />
+    <Compile Include="Helpers\hlpMenuDropDown.cs" />
+    <Compile Include="Helpers\hlpModels.cs" />
+    <Compile Include="Helpers\hlpObf.cs" />
+    <Compile Include="Services\LabelsBiz.cs" />
+    <Compile Include="Helpers\hlpSecurity.cs" />
+    <Compile Include="Models\Accesscontrol\Account\AccountModels.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModelsVMs\Accesscontrol\User\UserVM.cs" />
+    <Compile Include="Models\APPContext\APPContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Accesscontrol\User\User.cs" />
+    <Compile Include="Models\LOV\Department\DepartmentDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Employee\EmployeeCRUD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModelsVMs\Employee\EmployeeVM.cs" />
+    <Compile Include="Models\Lookup\Lookup.cs" />
+    <Compile Include="Models\Samples\Person\Person.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Samples\Search.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Value.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_DataUpload\EmpPhoto\EmpPhotoNA.jpg" />
+    <Content Include="Content\AdminLTE\css\AdminLTE.css" />
+    <Content Include="Content\AdminLTE\css\bootstrap.css" />
+    <Content Include="Content\AdminLTE\css\bootstrap.min.css" />
+    <Content Include="Content\AdminLTE\css\datepicker3.css" />
+    <Content Include="Content\AdminLTE\css\daterangepicker-bs3.css" />
+    <Content Include="Content\AdminLTE\css\font-awesome.css" />
+    <Content Include="Content\AdminLTE\css\font-awesome.min.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\all.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\aero%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\aero.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\aero.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\blue%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\blue.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\blue.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\flat%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\flat.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\flat.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\green%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\green.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\green.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\grey%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\grey.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\grey.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\orange%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\orange.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\orange.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\pink%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\pink.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\pink.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\purple%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\purple.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\purple.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\red%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\red.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\red.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\yellow%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\yellow.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\yellow.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\flat\_all.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\futurico\futurico%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\futurico\futurico.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\futurico\futurico.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\aero.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\blue.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\green.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\grey.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\line%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\line.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\line.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\orange.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\pink.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\purple.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\red.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\yellow.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\line\_all.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\aero%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\aero.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\aero.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\blue%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\blue.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\blue.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\green%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\green.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\green.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\grey%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\grey.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\grey.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\minimal%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\minimal.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\minimal.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\orange%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\orange.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\orange.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\pink%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\pink.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\pink.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\purple%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\purple.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\purple.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\red%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\red.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\red.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\yellow%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\yellow.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\yellow.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\minimal\_all.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\polaris\polaris%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\polaris\polaris.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\polaris\polaris.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\aero%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\aero.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\aero.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\blue%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\blue.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\blue.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\green%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\green.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\green.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\grey%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\grey.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\grey.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\orange%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\orange.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\orange.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\pink%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\pink.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\pink.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\purple%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\purple.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\purple.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\red%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\red.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\red.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\square%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\square.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\square.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\yellow%402x.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\yellow.css" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\yellow.png" />
+    <Content Include="Content\AdminLTE\css\iCheck\square\_all.css" />
+    <Content Include="Content\AdminLTE\css\ionicons.css" />
+    <Content Include="Content\AdminLTE\css\ionicons.min.css" />
+    <Content Include="Content\AdminLTE\css\morris.css" />
+    <Content Include="Content\AdminLTE\img\ajax-loader.gif" />
+    <Content Include="Content\AdminLTE\img\ajax-loader1.gif" />
+    <Content Include="Content\AdminLTE\img\blur-background04.jpg" />
+    <Content Include="Content\AdminLTE\img\blur-background08.jpg" />
+    <Content Include="Content\AdminLTE\img\blur-background09.jpg" />
+    <Content Include="Content\AdminLTE\img\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="Content\AdminLTE\img\bootstrap-colorpicker\alpha.png" />
+    <Content Include="Content\AdminLTE\img\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="Content\AdminLTE\img\bootstrap-colorpicker\hue.png" />
+    <Content Include="Content\AdminLTE\img\bootstrap-colorpicker\saturation.png" />
+    <Content Include="Content\AdminLTE\img\icons.png" />
+    <Content Include="Content\AdminLTE\img\sprite-skin-flat.png" />
+    <Content Include="Content\AdminLTE\img\sprite-skin-nice.png" />
+    <Content Include="Content\AdminLTE\img\user-bg.png" />
+    <Content Include="Content\print.css" />
+    <Content Include="Content\SiteLogin.css" />
+    <Content Include="Content\SiteReport.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Content\AdminLTE\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\AdminLTE\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\AdminLTE\fonts\ionicons.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\Company_Logo.png" />
+    <Content Include="Images\Company_Logo_White.png" />
+    <Content Include="Images\EmpPhotoNA.jpg" />
+    <Content Include="Images\LOGO.png" />
+    <Content Include="Images\UCN.jpg" />
+    <Content Include="Scripts\AdminLTE\app.js" />
+    <Content Include="Scripts\AdminLTE\charfloat\jquery.flot.categories.js" />
+    <Content Include="Scripts\AdminLTE\charfloat\jquery.flot.js" />
+    <Content Include="Scripts\AdminLTE\charfloat\jquery.flot.pie.js" />
+    <Content Include="Scripts\AdminLTE\charfloat\jquery.flot.resize.js" />
+    <Content Include="Scripts\AdminLTE\chartmorris\morris.js" />
+    <Content Include="Scripts\AdminLTE\chartmorris\raphael.js" />
+    <Content Include="Scripts\AdminLTE\Copy of app.js" />
+    <Content Include="Scripts\AdminLTE\dashboard.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\bootstrap-datepicker.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.ar.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.az.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.cy.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.el.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.et.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.fa.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.gl.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.he.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.hu.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.id.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.ka.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.kk.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.mk.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.nl-BE.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.no.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.pt.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.sq.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.ua.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.vi.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="Scripts\AdminLTE\datepicker\locales\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="Scripts\AdminLTE\daterangepicker.js" />
+    <Content Include="Scripts\AdminLTE\demo.js" />
+    <Content Include="Scripts\AdminLTE\html5shiv.js" />
+    <Content Include="Scripts\AdminLTE\html5shiv.min.js" />
+    <Content Include="Scripts\AdminLTE\jquery-ui-1.10.3.js" />
+    <Content Include="Scripts\AdminLTE\jquery.inputmask.date.extensions.js" />
+    <Content Include="Scripts\AdminLTE\jquery.inputmask.extensions.js" />
+    <Content Include="Scripts\AdminLTE\jquery.inputmask.js" />
+    <Content Include="Scripts\AdminLTE\respond.min.js" />
+    <Content Include="Scripts\AdminLTE\respond.src.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\ud\InitializeUI.js" />
+    <Content Include="Scripts\ud\jsHelper.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStartX.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="ModelsValidations\CPAR\Chatnotify\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_DataUpload\EmpPhoto\Thumbs.db" />
+    <None Include="Content\AdminLTE\fonts\fontawesome-webfont.eot" />
+    <None Include="Content\AdminLTE\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\AdminLTE\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Content\AdminLTE\fonts\fontawesome-webfont.woff2" />
+    <None Include="Content\AdminLTE\fonts\FontAwesome.otf" />
+    <None Include="Content\AdminLTE\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Content\AdminLTE\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\AdminLTE\fonts\glyphicons-halflings-regular.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Content\AdminLTE\fonts\ionicons.eot" />
+    <None Include="Content\AdminLTE\fonts\ionicons.ttf" />
+    <None Include="Content\AdminLTE\fonts\ionicons.woff" />
+    <None Include="Content\AdminLTE\less\404_500_errors.less" />
+    <None Include="Content\AdminLTE\less\AdminLTE.less" />
+    <None Include="Content\AdminLTE\less\alerts.less" />
+    <None Include="Content\AdminLTE\less\animated.less" />
+    <None Include="Content\AdminLTE\less\bootstrap-social.less" />
+    <None Include="Content\AdminLTE\less\bordered-pulled.less" />
+    <None Include="Content\AdminLTE\less\boxes.less" />
+    <None Include="Content\AdminLTE\less\buttons.less" />
+    <None Include="Content\AdminLTE\less\callout.less" />
+    <None Include="Content\AdminLTE\less\core.less" />
+    <None Include="Content\AdminLTE\less\dropdown.less" />
+    <None Include="Content\AdminLTE\less\fixed-width.less" />
+    <None Include="Content\AdminLTE\less\font-awesome.less" />
+    <None Include="Content\AdminLTE\less\forms.less" />
+    <None Include="Content\AdminLTE\less\header.less" />
+    <None Include="Content\AdminLTE\less\iCheck.less" />
+    <None Include="Content\AdminLTE\less\icons.less" />
+    <None Include="Content\AdminLTE\less\invoice.less" />
+    <None Include="Content\AdminLTE\less\larger.less" />
+    <None Include="Content\AdminLTE\less\list.less" />
+    <None Include="Content\AdminLTE\less\lockscreen.less" />
+    <None Include="Content\AdminLTE\less\login_and_register.less" />
+    <None Include="Content\AdminLTE\less\mailbox.less" />
+    <None Include="Content\AdminLTE\less\mixins.less" />
+    <None Include="Content\AdminLTE\less\navs.less" />
+    <None Include="Content\AdminLTE\less\pace.less" />
+    <None Include="Content\AdminLTE\less\path.less" />
+    <None Include="Content\AdminLTE\less\progress-bars.less" />
+    <None Include="Content\AdminLTE\less\rotated-flipped.less" />
+    <None Include="Content\AdminLTE\less\sidebar.less" />
+    <None Include="Content\AdminLTE\less\skins.less" />
+    <None Include="Content\AdminLTE\less\small-box.less" />
+    <None Include="Content\AdminLTE\less\stacked.less" />
+    <None Include="Content\AdminLTE\less\timeline.less" />
+    <None Include="Content\AdminLTE\less\variables.less" />
+    <None Include="Content\AdminLTE\less\vars.less" />
+    <None Include="Content\AdminLTE\scss\font-awesome.scss" />
+    <None Include="Content\AdminLTE\scss\_animated.scss" />
+    <None Include="Content\AdminLTE\scss\_bordered-pulled.scss" />
+    <None Include="Content\AdminLTE\scss\_core.scss" />
+    <None Include="Content\AdminLTE\scss\_fixed-width.scss" />
+    <None Include="Content\AdminLTE\scss\_icons.scss" />
+    <None Include="Content\AdminLTE\scss\_larger.scss" />
+    <None Include="Content\AdminLTE\scss\_list.scss" />
+    <None Include="Content\AdminLTE\scss\_mixins.scss" />
+    <None Include="Content\AdminLTE\scss\_path.scss" />
+    <None Include="Content\AdminLTE\scss\_rotated-flipped.scss" />
+    <None Include="Content\AdminLTE\scss\_stacked.scss" />
+    <None Include="Content\AdminLTE\scss\_variables.scss" />
+    <None Include="Content\fonts\font-tahoma.woff" />
+    <None Include="Content\fonts\font-tahoma.woff2" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\Person\Details.cshtml" />
+    <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\Person\Edit.cshtml" />
+    <Content Include="Views\Person\Delete.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\Details.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Delete.cshtml" />
+    <Content Include="Views\Shared\_LayoutLookup.cshtml" />
+    <Content Include="Views\Lookup\ShowDept.cshtml" />
+    <Content Include="Views\Lookup\ShowEmp.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\_Details.cshtml" />
+    <Content Include="Views\User\_Inputs.cshtml" />
+    <Content Include="Views\User\Deactivate.cshtml" />
+    <Content Include="Views\User\Activate.cshtml" />
+    <Content Include="Views\User\Role.cshtml" />
+    <Content Include="Views\Lookup\ShowUserRes_getData.cshtml" />
+    <Content Include="Views\Lookup\ShowRole_getDatalist.cshtml" />
+    <Content Include="Views\Lookup\ShowIssSubCtgry.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Shared\_LayoutReport.cshtml" />
+    <Content Include="Views\User\_Rolemenu_showDatalist.cshtml" />
+    <Content Include="Views\Shared\_PartialEmpty.cshtml" />
+    <Content Include="Views\Shared\_PartialJSVAR.cshtml" />
+    <Content Include="Views\Shared\_PartialNotfound.cshtml" />
+    <Content Include="Views\Shared\_PartialMenu.cshtml" />
+    <Content Include="Views\Shared\_PartialDialogLookup.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\Employee\Delete.cshtml" />
+    <Content Include="Views\Employee\_Inputs.cshtml" />
+    <Content Include="Views\Employee\_Inputs_main.cshtml" />
+    <Content Include="Views\Employee\_Inputs_profil.cshtml" />
+    <Content Include="Views\Employee\_Inputs_kontak.cshtml" />
+    <Content Include="Views\Employee\_Inputs_alamat.cshtml" />
+    <Content Include="Views\Employee\_Inputs_pekerjaan.cshtml" />
+    <Content Include="Views\Employee\_Inputs_alamatKTP.cshtml" />
+    <Content Include="Views\Employee\_Inputs_alamatDOM.cshtml" />
+    <Content Include="Views\Employee\Career.cshtml" />
+    <Content Include="Views\Employee\_InputsCareer.cshtml" />
+    <Content Include="Views\Lookup\ShowJobttl.cshtml" />
+    <Content Include="Views\Lookup\ShowEmployeests.cshtml" />
+    <Content Include="Views\Lookup\ShowCountry.cshtml" />
+    <Content Include="Views\Lookup\ShowCity.cshtml" />
+    <Content Include="Views\Lookup\ShowMaritalsts.cshtml" />
+    <Content Include="Views\Lookup\ShowReligion.cshtml" />
+    <Content Include="Views\Lookup\ShowSex.cshtml" />
+    <Content Include="Views\Employee\_Events.cshtml" />
+    <Content Include="Views\Home\_PartialIndex_widget1.cshtml" />
+    <Content Include="Views\Home\_PartialIndex_calendar.cshtml" />
+    <Content Include="Views\Home\_Events.cshtml" />
+    <Content Include="Views\Home\_PartialIndex_widget2.cshtml" />
+    <Content Include="Views\Shared\_PartialConfirmDelete.cshtml" />
+    <Content Include="Views\Shared\_LayoutPrintable.cshtml" />
+    <Content Include="Views\Employee\Previewlist.cshtml" />
+    <Content Include="Views\Employee\EditQuit.cshtml" />
+    <Content Include="Views\Employee\_PartialConfirmQuit.cshtml" />
+    <Content Include="Views\Home\_PartialIndex_DONUT_COMPLAIN.cshtml" />
+    <Content Include="Views\Department\_Inputs.cshtml" />
+    <Content Include="Views\Department\_Events.cshtml" />
+    <Content Include="Views\Audit\Create.cshtml" />
+    <Content Include="Views\Audit\Delete.cshtml" />
+    <Content Include="Views\Audit\Details.cshtml" />
+    <Content Include="Views\Audit\Edit.cshtml" />
+    <Content Include="Views\Audit\Index.cshtml" />
+    <Content Include="Views\Person\_Inputs.cshtml" />
+    <Content Include="Views\Person\_Events.cshtml" />
+    <Content Include="Views\Audit\_Events.cshtml" />
+    <Content Include="Views\Audit\_Inputs.cshtml" />
+    <Content Include="Views\Project\_Events.cshtml" />
+    <Content Include="Views\Project\_Inputs.cshtml" />
+    <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Project\Delete.cshtml" />
+    <Content Include="Views\Project\Details.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Usercpar\_Details.cshtml" />
+    <Content Include="Views\Usercpar\_Inputs.cshtml" />
+    <Content Include="Views\Usercpar\_Rolemenu_showDatalist.cshtml" />
+    <Content Include="Views\Usercpar\Activate.cshtml" />
+    <Content Include="Views\Usercpar\Create.cshtml" />
+    <Content Include="Views\Usercpar\Deactivate.cshtml" />
+    <Content Include="Views\Usercpar\Delete.cshtml" />
+    <Content Include="Views\Usercpar\Details.cshtml" />
+    <Content Include="Views\Usercpar\Edit.cshtml" />
+    <Content Include="Views\Usercpar\Index.cshtml" />
+    <Content Include="Views\Usercpar\Role.cshtml" />
+    <Content Include="Views\Usercpar\_Events.cshtml" />
+    <Content Include="Views\Usercpar\_Inputs_photo.cshtml" />
+    <Content Include="Views\Usercpar\_Inputs_user.cshtml" />
+    <Content Include="Views\Usercpar\_Inputs_employee.cshtml" />
+    <Content Include="Views\Usercpar\_PartialConfirmDelete.cshtml" />
+    <Content Include="Views\Usercpar\_PartialConfirmDeactivate.cshtml" />
+    <Content Include="Views\User\Copy of _Rolemenu_showDatalist.cshtml" />
+    <Content Include="Views\Lookup\ShowAudit.cshtml" />
+    <Content Include="Views\Lookup\ShowStandardreff.cshtml" />
+    <Content Include="Views\Standardreff\_Events.cshtml" />
+    <Content Include="Views\Standardreff\_Inputs.cshtml" />
+    <Content Include="Views\Standardreff\Create.cshtml" />
+    <Content Include="Views\Standardreff\Delete.cshtml" />
+    <Content Include="Views\Standardreff\Details.cshtml" />
+    <Content Include="Views\Standardreff\Edit.cshtml" />
+    <Content Include="Views\Standardreff\Index.cshtml" />
+    <Content Include="Views\Shared\_PartialConfirmSaved.cshtml" />
+    <Content Include="Views\Shared\_PartialConfirmDeleted.cshtml" />
+    <Content Include="Views\LogbookCPAR\_Events.cshtml" />
+    <Content Include="Views\LogbookCPAR\_Inputs.cshtml" />
+    <Content Include="Views\LogbookCPAR\Details.cshtml" />
+    <Content Include="Views\LogbookCPAR\Index.cshtml" />
+    <Content Include="Views\LogbookCPAR\Response.cshtml" />
+    <Content Include="Views\LogbookCPAR\_Inputs_response.cshtml" />
+    <Content Include="Views\LogbookCPAR\_Inputs_verify.cshtml" />
+    <Content Include="Views\LogbookCPAR\Verify.cshtml" />
+    <Content Include="Views\LogbookCPAR\Close.cshtml" />
+    <Content Include="Views\LogbookCPAR\_PartialConfirmClose.cshtml" />
+    <Content Include="Views\LogbookCPAR\_PartialConfirmCancel.cshtml" />
+    <Content Include="Views\LogbookCPAR\Cancel.cshtml" />
+    <Content Include="Views\LogbookCPAR\Chat.cshtml" />
+    <Content Include="Views\Complain\_Events.cshtml" />
+    <Content Include="Views\Complain\_Inputs.cshtml" />
+    <Content Include="Views\Complain\Create.cshtml" />
+    <Content Include="Views\Complain\Delete.cshtml" />
+    <Content Include="Views\Complain\Details.cshtml" />
+    <Content Include="Views\Complain\Edit.cshtml" />
+    <Content Include="Views\Complain\Index.cshtml" />
+    <Content Include="Views\Complain\_Inputs_complain.cshtml" />
+    <Content Include="Views\Complain\_Inputs_project.cshtml" />
+    <Content Include="Views\Complain\_Inputs_complain_desc.cshtml" />
+    <Content Include="Views\Complain\_Inputs_complain_others.cshtml" />
+    <Content Include="Views\Complain\_Inputs_complain_persons.cshtml" />
+    <Content Include="Views\Complain\_Inputs_complain_dates.cshtml" />
+    <Content Include="Views\Complain\ShowProject.cshtml" />
+    <Content Include="Views\LogbookComplain\_Events.cshtml" />
+    <Content Include="Views\LogbookComplain\_Inputs.cshtml" />
+    <Content Include="Views\LogbookComplain\_Inputs_complain.cshtml" />
+    <Content Include="Views\LogbookComplain\_Inputs_complain_dates.cshtml" />
+    <Content Include="Views\LogbookComplain\_Inputs_complain_desc.cshtml" />
+    <Content Include="Views\LogbookComplain\_Inputs_complain_others.cshtml" />
+    <Content Include="Views\LogbookComplain\_Inputs_complain_persons.cshtml" />
+    <Content Include="Views\LogbookComplain\_Inputs_project.cshtml" />
+    <Content Include="Views\LogbookComplain\Details.cshtml" />
+    <Content Include="Views\LogbookComplain\Index.cshtml" />
+    <Content Include="Views\Shared\_PartialDialogLookup_additems.cshtml" />
+    <Content Include="Views\CPAR\ShowStandardreff.cshtml" />
+    <Content Include="Views\CPAR\ShowStandardreff_resultlist.cshtml" />
+    <Content Include="Views\CPAR\_Events.cshtml" />
+    <Content Include="Views\CPAR\_Inputs.cshtml" />
+    <Content Include="Views\CPAR\_Inputs_stdreff.cshtml" />
+    <Content Include="Views\CPAR\Create.cshtml" />
+    <Content Include="Views\CPAR\Delete.cshtml" />
+    <Content Include="Views\CPAR\Details.cshtml" />
+    <Content Include="Views\CPAR\Edit.cshtml" />
+    <Content Include="Views\CPAR\Index.cshtml" />
+    <Content Include="Views\Error\Error403.cshtml" />
+    <Content Include="Views\LogbookComplain\Close.cshtml" />
+    <Content Include="Views\LogbookComplain\Cancel.cshtml" />
+    <Content Include="Views\LogbookComplain\_PartialConfirmCancel.cshtml" />
+    <Content Include="Views\LogbookComplain\_PartialConfirmClose.cshtml" />
+    <Content Include="Views\LogbookComplain\_PartialConfirmClosedOrCanceled.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\LogbookCPAR\_Inputs_stdreff.cshtml" />
+    <Content Include="Views\Usercpar\Copy of Index.cshtml" />
+    <Content Include="Views\Export\LogbookCPAR_XLS.cshtml" />
+    <Content Include="Views\Export\Edit.cshtml" />
+    <Content Include="Views\Lookup\ShowCPARType.cshtml" />
+    <Content Include="Views\Export\LogbookComplain_XLS.cshtml" />
+    <Content Include="Views\Shared\_PartialButtonCRUD.cshtml" />
+    <Content Include="Views\Shared\_Eventfilters_CPAR.cshtml" />
+    <Content Include="Views\Shared\_Eventfilters_Complain.cshtml" />
+    <Content Include="Views\Shared\_Inputfilters_Complain.cshtml" />
+    <Content Include="Views\Shared\_Inputfilters_CPAR.cshtml" />
+    <Content Include="Views\LogbookCPAR\Filter.cshtml" />
+    <Content Include="Views\Shared\_PartialDialogFilter.cshtml" />
+    <Content Include="Views\Home\_PartialIndex_FLAG.cshtml" />
+    <Content Include="Views\Home\_PartialIndex_DONUT_CPAR.cshtml" />
+    <Content Include="Views\LogbookCPAR\Print.cshtml" />
+    <Content Include="Views\LogbookCPAR\_Print_stdreff.cshtml" />
+    <Content Include="Views\Shared\_LayoutDialogCRUD.cshtml" />
+    <Content Include="Views\Department\XCreate.cshtml" />
+    <Content Include="Views\Employee\XCreate.cshtml" />
+    <Content Include="Views\Home\_PartialIndex_BAR_CPAR.cshtml" />
+    <Content Include="Views\LogbookCPAR\Print_ver10\Print.cshtml" />
+    <Content Include="Views\LogbookCPAR\Print_ver10\_Print_type.cshtml" />
+    <Content Include="Views\LogbookCPAR\Print_ver10\_Print_subtype.cshtml" />
+    <Content Include="Views\LogbookCPAR\Print_ver10\_Print_stdreff.cshtml" />
+    <Content Include="Views\LogbookCPAR\Print_ver10\_Print_person.cshtml" />
+    <Content Include="Views\CPAR\Patchmorefeature1.cshtml" />
+    <Content Include="Views\CPAR\Patchhotfix2.cshtml" />
+    <Content Include="Views\CPAR\Patchhotfix3.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50695</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,78 @@
+﻿@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+<div class="row">
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>@ViewBag.PRECREATE</h3>
+                <p>@valFLAG.FLAG_CPAR_STEP_PRECREATE_NM</p>
+            </div>
+            <div class="icon">
+            </div>
+            <a href="@Url.Action("Index", "LogbookCPAR", new { id = "1" })" class="small-box-footer">
+                Lihat Daftar <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-pink">
+            <div class="inner">
+                <h3>@ViewBag.CREATED</h3>
+                <p>@valFLAG.FLAG_CPAR_STEP_CREATED_NM</p>
+            </div>
+            <div class="icon">
+            </div>
+            <a href="@Url.Action("Index", "LogbookCPAR", new { id = "2" })" class="small-box-footer">
+                Lihat Daftar <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-purple">
+            <div class="inner">
+                <h3>@ViewBag.RESPONDED</h3>
+                <p>@valFLAG.FLAG_CPAR_STEP_RESPONDED_NM</p>
+            </div>
+            <div class="icon">
+            </div>
+            <a href="@Url.Action("Index", "LogbookCPAR", new { id = "3" })" class="small-box-footer">
+                Lihat Daftar <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3>@ViewBag.VERIFIED</h3>
+                <p>@valFLAG.FLAG_CPAR_STEP_VERIFIED_NM</p>
+            </div>
+            <div class="icon">
+            </div>
+            <a href="@Url.Action("Index", "LogbookCPAR", new { id = "4" })" class="small-box-footer">
+                Lihat Daftar <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div><!-- ./col -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>@ViewBag.VERIFIED2</h3>
+                <p>@valFLAG.FLAG_CPAR_STEP_VERIFIED_NM2</p>
+            </div>
+            <div class="icon">
+            </div>
+            <a href="@Url.Action("Index", "LogbookCPAR", new { id = "5" })" class="small-box-footer">
+                Lihat Daftar <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div><!-- ./col -->
+</div><!-- /.row -->

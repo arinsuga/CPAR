@@ -1,0 +1,65 @@
+﻿@model APPBASE.Models.Department_DetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["LOV_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="LOV_ID">Kode [Max: @valFLAG.FLAG_MAXLENGTH_ID Character]</label>
+            <input type="text" id="LOV_ID" name="LOV_ID" value="@Html.DisplayFor(model => model.LOV_ID)" class="form-control" maxlength="@valFLAG.FLAG_MAXLENGTH_ID" @vsReadonlyTextbox />
+            
+            @if (ViewData.ModelState["LOV_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("LOV_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["LOV_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("LOV_ID2")
+                    </label>
+            }
+            @if (ViewData.ModelState["LOV_ID3"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("LOV_ID3")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["LOV_NM0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="LOV_NM">Nama Departemen [Max: @valFLAG.FLAG_MAXLENGTH_NM Character]</label>
+            <input type="text" id="LOV_NM" name="LOV_NM" value="@Html.DisplayFor(model => model.LOV_NM)" class="form-control" maxlength="@valFLAG.FLAG_MAXLENGTH_NM" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["LOV_NM1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("LOV_NM1")
+                    </label>
+            }
+            @if (ViewData.ModelState["LOV_NM2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("LOV_NM2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+

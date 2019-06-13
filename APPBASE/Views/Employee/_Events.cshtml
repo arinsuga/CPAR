@@ -1,0 +1,144 @@
+﻿
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("[data-mask]").inputmask(); //Optional if contains date field(s)
+        $("#FileimageContainer").hide(); //Optional if contains upload image field(s)
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Optional if contains upload image field(s)
+        $('#Fileimage').on('change', function () {
+            previewImage(this, '#imgUPLOAD_IMG');
+        });
+        //Command LookUp [Upload photo]
+        $("#cmdUPLOAD_IMG").click(function () {
+            $("#Fileimage").click();
+        }); //End  $("#btnLookup").click
+
+        //Command LookUp [Departemen]
+        $("#cmdLookupDEPT_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'DEPT_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'DEPT_NM'; //NM
+            showLookup('Lookup/ShowDept', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp Jobtitle
+        $("#cmdLookupJOB_TITLE_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'JOB_TITLE_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'JOB_TITLE_NM'; //NM
+            showLookup('Lookup/ShowJobttl', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Status Kepegawaian]
+        $("#cmdLookupRES_STS_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'RES_STS'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'RES_STS_NM'; //NM
+            showLookup('Lookup/ShowEmployeests', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Negara KTP]
+        $("#cmdLookupCNTRY_NM_IC").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'CNTRY_RUID_IC'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'CNTRY_NM_IC'; //NM
+            showLookup('Lookup/ShowCountry', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Kota KTP]
+        $("#cmdLookupCITY_NM_IC").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'CITY_RUID_IC'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'CITY_NM_IC'; //NM
+            showLookup('Lookup/ShowCity', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Negara Domisili]
+        $("#cmdLookupCNTRY_NM_DMCL").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'CNTRY_RUID_DMCL'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'CNTRY_NM_DMCL'; //NM
+            showLookup('Lookup/ShowCountry', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Kota Domisili]
+        $("#cmdLookupCITY_NM_DMCL").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'CITY_RUID_DMCL'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'CITY_NM_DMCL'; //NM
+            showLookup('Lookup/ShowCity', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Agama]
+        $("#cmdLookupRELIGION_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'RELIGION_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'RELIGION_NM'; //NM
+            showLookup('Lookup/ShowReligion', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [J.Kelamin]
+        $("#cmdLookupSEX_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'SEX'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'SEX_NM'; //NM
+            showLookup('Lookup/ShowSex', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Status Kepegawaian]
+        $("#cmdLookupMRTL_STS_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'MRTL_STS'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'MRTL_STS_NM'; //NM
+            showLookup('Lookup/ShowMaritalsts', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+
+    });    //End $(document).ready
+</script>

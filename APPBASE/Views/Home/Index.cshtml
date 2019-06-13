@@ -1,0 +1,72 @@
+﻿@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section includeTOP {
+    <!-- Optional if contains Datepicker -->
+    @Styles.Render("~/Content/cssDatepicker")
+    <!-- Optional if contains Chart Morris -->
+    @Styles.Render("~/Content/cssChartmorris")
+}
+
+@section includeBOTTOM {
+    <!-- Optional if contains Datepicker -->+
+    @Scripts.Render("~/bundles/JSDatepicker")
+    <!-- Optional if contains Chart float -->
+    @Scripts.Render("~/bundles/JSChartfloat")
+    <!-- Optional if contains Chart morris -->
+    @Scripts.Render("~/bundles/JSChartmorris")
+}
+
+
+@section TitleIcon {
+    <i class="fa fa-home"></i>
+}
+
+<div class="row">
+    <section class="col-lg-12 col-xs-12 col-md-12 connectedSortable">
+        <div class="box box-warning">
+            <div class="box-header">
+                <i class="fa fa-tasks"></i>
+                <h3 class="box-title">Perkembangan CPAR</h3>
+            </div>
+            <div class="box-body">
+                <!-- Info CPAR_STEP -->
+                @{Html.RenderPartial("_PartialIndex_FLAG");}
+            </div><!-- /.box-body-->
+        </div><!-- /.box -->
+    </section>
+</div>
+
+<div class="row">
+    <section class="col-lg-12">
+        @{Html.RenderPartial("_PartialIndex_BAR_CPAR");}
+    </section>
+</div>
+<div class="row">
+    <!-- Left col -->
+    <section class="col-lg-7 connectedSortable">
+        <!-- CPAR_STS -->
+        @{Html.RenderPartial("_PartialIndex_DONUT_CPAR");}
+    </section><!-- /.col-lg-7 connectedSortable -->
+    
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-5 connectedSortable">
+        <!-- Info Other widgets -->
+        @{Html.RenderPartial("_PartialIndex_widget1");}
+        <!-- Calendar -->
+        @{Html.RenderPartial("_PartialIndex_calendar");}
+    </section><!-- /.col-lg-5 connectedSortable -->
+</div><!-- /.row -->
+
+@section scripts {
+
+<!-- Events -->
+@{Html.RenderPartial("_Events");}
+
+}
+

@@ -1,0 +1,13 @@
+﻿@model APPBASE.Models.CPAR_VerifyVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+
+<span class="title-bold">Jenis</span> :
+@foreach (var item in Model.CPAR_SUBTYPE_LOV)
+{
+    if (item.RUID == Model.CPAR_SUBTYPE)
+    {<span><i class="fa fa-fw fa-check-square-o"></i> @item.LOV_NM</span> }
+    else{<span><i class="fa fa-fw fa-square-o"></i> @item.LOV_NM</span> }
+}
+

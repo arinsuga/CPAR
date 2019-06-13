@@ -1,0 +1,39 @@
+﻿@model APPBASE.Models.User_DetailCPARVM
+
+@{
+    ViewBag.Title = "Hapus User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    Html.RenderPartial("_PartialConfirmDelete");
+
+    <div class="box box-danger">
+        <div class="box-header">
+            <h3 class="box-title"></h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            @{Html.RenderPartial("_Inputs");}
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.box-footer -->
+    </div><!-- /.box -->
+}
+
+
+<!-- Modal -->
+@{Html.RenderPartial("_PartialDialogLookup");}
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Events");}
+
+
+}

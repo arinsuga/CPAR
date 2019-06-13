@@ -1,0 +1,21 @@
+﻿@font-face {
+  font-family: 'print-tahoma';
+  src: local('Tahoma'),
+  url('fonts/font-tahoma.woff2') format('woff2'),
+  url('fonts/font-tahoma.woff') format('woff');
+}
+.print-title{font-family:print-tahoma; font-size:medium; font-weight:bold;text-align:center;}
+.border-left{border-left:1px solid;}
+.border-right{border-right:1px solid;}
+.border-top{border-top:1px solid;}
+.border-bottom{border-bottom:1px solid;}
+.border{border:1px solid;}
+table thead tr th,table tbody tr td{padding:3px; font-family:Tahoma; font-size:small;}
+.align-top{vertical-align:top;}
+.align-bottom{vertical-align:bottom;}
+.align-left{text-align:left;}
+.align-right{text-align:right;}
+.margin-top{margin-top:10px;}
+.no-padding{padding:0;}
+.padding-all{padding:3px;}
+.align-center{text-align:center;}

@@ -1,0 +1,105 @@
+﻿@model IEnumerable<APPBASE.Models.Audit_LookupVM>
+
+@{
+    ViewBag.Title = "Daftar Proses Audit";
+    Layout = "~/Views/Shared/_LayoutLookup.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+
+                @if (Model == null) { 
+                    <table class="table table-hover">
+                        <tr>
+                            <td style="width:100%;text-align:center;">@{Html.RenderPartial("_PartialEmpty");}</td>
+                        </tr>
+                    </table>
+                }
+
+                @if (Model != null)
+                {
+
+                <div class="input-group">
+                    <input type="text" name="searchValue" id="searchValue" class="form-control input-sm pull-right FieldEnableAlways" placeholder="Filter Data Proses Audit"/>
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <div class="input-group-btn">
+                        <button type="button" id="cmdAdditem" class="btn btn-flat btn-sm btn-warning" data-toggle="modal" data-target="#DialogLookup"><i class="fa fa-plus"></i> Tambah</button>
+                    </div>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="LOOKUPROW">
+                        <td class="SEARCHABLE_ROWS" style="width:50%;">
+                            <div style="font-style:italic; font-weight:bold;">@Html.DisplayFor(modelItem => item.DEPT_NM)</div>
+                            <p class="truncate-lookup">@Html.DisplayFor(modelItem => item.LOV_NM)</p>
+                            <input type="hidden" class="RUID" value="@Html.DisplayFor(modelitem => item.RUID)" />
+                            <input type="hidden" class="ID" value="@Html.DisplayFor(modelitem => item.LOV_ID)" />
+                            <input type="hidden" class="NAME" value="@Html.DisplayFor(modelitem => item.LOV_NM)" />
+                        </td>
+                    </tr>
+                }
+                    </tbody>
+                </table>
+                }
+
+    </div><!-- /.col-xs-12 -->
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("#DialogLookupTitle").text("@ViewBag.Title");
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+        $("#DialogLookupWait").hide();
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        $(".LOOKUPROW").click(function () {
+            var vsRUID = $(this).children().children(".RUID").val();
+            var vsID = $(this).children().children(".ID").val();
+            var vsNAME = $(this).children().children(".NAME").val();
+
+            var vsRUID_TAG = '@ViewBag.RUID_TAG';
+            var vsID_TAG = '@ViewBag.ID_TAG';
+            var vsNAME_TAG = '@ViewBag.NAME_TAG';
+            if (isEmptyString(vsRUID_TAG) != true) { $('#' + vsRUID_TAG).val(vsRUID); }
+            if (isEmptyString(vsID_TAG) != true) { $('#' + vsID_TAG).val(vsID); }
+            if (isEmptyString(vsNAME_TAG) != true) { $('#' + vsNAME_TAG).val(vsNAME); }
+            $('#DialogLookup').modal('hide')
+        }); //End  $(".LOOKUPROW").click()
+        $("#cmdAdditem").click(function () {
+            var myWindow = window.open("@Url.Action("Create", "Audit")", "_blank", "width=500, height=400, scrollbars=yes");
+            var timer = setInterval(function() {
+                if (myWindow.closed) {
+                    clearInterval(timer);
+                    //Start code refresh here
+                    var vaSearchValue = new Array();
+                    vaSearchValue[0] = "";
+                    //            vaSearchValue[1] = "Data array 2";
+                    //            vaSearchValue[2] = "Data array 3";
+                    var vaTargetTag = new Array();
+                    vaTargetTag[0] = '@ViewBag.RUID_TAG'; //RUID
+                    vaTargetTag[1] = '@ViewBag.ID_TAG';   //ID
+                    vaTargetTag[2] = '@ViewBag.NAME_TAG'; //NM
+                    showLookup('Lookup/ShowAudit', '', vaSearchValue, vaTargetTag);
+                }
+            }, 500);
+        }); //End  $("#btnLookup").click
+
+    });   //End $(document).ready
+</script>
+

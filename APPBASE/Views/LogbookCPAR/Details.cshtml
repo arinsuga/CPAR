@@ -1,0 +1,172 @@
+﻿@model APPBASE.Models.CPAR_VerifyVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "Logbook CPAR " + ViewBag.CPAR_TYPE_NM;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section includeBOTTOM {
+    @Scripts.Render("~/bundles/JSInputMask")
+}
+
+
+@if (ViewBag.CRUDSavedOrDelete == valFLAG.FLAG_TRUE) {
+      Html.RenderPartial("_PartialConfirmSaved"); 
+}
+
+@{string vsClassCPAR_STS = "";}
+@{
+    if (Model.CPAR_STS == valFLAG.FLAG_CPAR_STS_CLOSED) { vsClassCPAR_STS = "btn btn-app bg-green"; }
+    if (Model.CPAR_STS == valFLAG.FLAG_CPAR_STS_CANCELED) { vsClassCPAR_STS = "btn btn-app bg-red"; }
+}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+            @if (vsClassCPAR_STS != "") {<span class="@vsClassCPAR_STS" style="color:White;">@Model.CPAR_STS_NM</span>  }
+            @if (Model.CPAR_STS == valFLAG.FLAG_CPAR_STS_OPEN) {
+                <span class="btn-group">
+                    
+                    @if ((Model.CPAR_TYPE == valFLAG.FLAG_CPAR_TYPE_CC) && (Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_PRECREATE)) {
+                        if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_SUMBERCPAR_CUSTCOMP_EDIT)) {
+                            <a href="@Url.Action("Edit", "CPARComplain", new { id = Model.RUID })" class="btn btn-app">
+                                <i class="fa fa-edit"></i> Lengkapi CPAR
+                            </a>
+                        }
+                    }
+
+                    @if ((Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_CREATED) || (Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_RESPONDED))
+                    {
+                        if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_CPAR_RESPONSE)) {
+                            if (ViewBag.isGranted_Response) {
+                                <a href="@Url.Action("Response", new { id = Model.RUID })" class="btn btn-app">
+                                    <i class="fa fa-edit"></i> Tanggapan
+                                </a>
+                            }
+                        }
+                    }
+                    @if ((Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_RESPONDED) || (Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_VERIFIED))
+                    {
+                        if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_CPAR_VERIFY)) {
+                            <a href="@Url.Action("Verify", new { id = Model.RUID })" class="btn btn-app bg-yellow" style="color:White;">
+                                <i class="fa fa-check-square-o"></i> Verifikasi
+                            </a>
+                        }
+                    }
+                    
+                    @if (ViewBag.isGranted_Chat)
+                    {
+                        <a href="@Url.Action("Chat", new { id = Model.RUID })" class="btn btn-app">
+                            <span class="badge bg-yellow">@ViewBag.Chatcount</span>
+                            <i class="fa fa-comment-o"></i> Diskusi
+                        </a>
+                    }
+                </span>
+            }
+            
+            <span class="btn-group pull-right">
+                <a href="@Url.Action("Print", new { id = Model.RUID })" class="btn btn-app"><i class="glyphicon glyphicon-eye-open"></i> Print Preview</a>
+
+                @if (Model.CPAR_STS == valFLAG.FLAG_CPAR_STS_OPEN) {
+                    if (Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_VERIFIED)
+                    {
+                        if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_CPAR_CLOSE))
+                        {
+                            <a href="@Url.Action("Close", new { id = Model.RUID })" class="btn btn-app bg-green" style="color:White;"><i class="glyphicon glyphicon-check"></i> Close</a>
+                        }
+                    }
+                    if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_CPAR_CANCEL))
+                    {
+                        <a href="@Url.Action("Cancel", new { id = Model.RUID })" class="btn btn-app bg-red" style="color:White;"><i class="glyphicon glyphicon-remove-circle"></i> Cancel</a>
+                    }
+                }
+            </span>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        @{Html.RenderPartial("_Inputs");}
+        <hr />
+        @{Html.RenderPartial("_Inputs_stdreff");}
+        <hr />
+        @{Html.RenderPartial("_Inputs_verify");}
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+        <div class="row">
+            <div class="col-xs-12">
+                @if (Model.CPAR_STS == valFLAG.FLAG_CPAR_STS_OPEN)
+                {
+                    <span class="btn-group">
+                        @if ((Model.CPAR_TYPE == valFLAG.FLAG_CPAR_TYPE_CC) && (Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_PRECREATE))
+                        {
+                            if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_CPAR_RESPONSE))
+                            {
+                                <a href="@Url.Action("Edit", "CPARComplain", new { id = Model.RUID })" class="btn btn-app">
+                                    <i class="fa fa-edit"></i> Lengkapi CPAR
+                                </a>
+                            }
+                        }
+
+                        @if ((Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_CREATED) || (Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_RESPONDED))
+                        {
+                            if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_CPAR_RESPONSE))
+                            {
+                                if (ViewBag.isGranted_Response)
+                                {
+                                    <a href="@Url.Action("Response", new { id = Model.RUID })" class="btn btn-app">
+                                        <i class="fa fa-edit"></i> Tanggapan
+                                    </a>
+                                }
+                            }
+                        }
+                        @if ((Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_RESPONDED) || (Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_VERIFIED))
+                        {
+                            if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_CPAR_VERIFY))
+                            {
+                                <a href="@Url.Action("Verify", new { id = Model.RUID })" class="btn btn-app bg-yellow" style="color:White;">
+                                    <i class="fa fa-check-square-o"></i> Verifikasi
+                                </a>
+                            }
+                        }
+                        
+                        @if (ViewBag.isGranted_Chat)
+                        {
+                            <a href="@Url.Action("Chat", new { id = Model.RUID })" class="btn btn-app">
+                                <span class="badge bg-yellow">@ViewBag.Chatcount</span>
+                                <i class="fa fa-comment-o"></i> Diskusi
+                            </a>
+                        }
+                    </span>
+                }
+
+                @Html.ActionLink("Back to List", "Index")
+
+                <span class="btn-group pull-right">
+                    <a href="@Url.Action("Print", new { id = Model.RUID })" class="btn btn-app"><i class="glyphicon glyphicon-eye-open"></i> Print Preview</a>
+
+                    @if (Model.CPAR_STS == valFLAG.FLAG_CPAR_STS_OPEN) {
+                        if (Model.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_VERIFIED)
+                        {
+                            if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_CPAR_CLOSE))
+                            {
+                                <a href="@Url.Action("Close", new { id = Model.RUID })" class="btn btn-app bg-green" style="color:White;"><i class="glyphicon glyphicon-check"></i> Close</a>
+                            }
+                        }
+                        if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_CPAR_CANCEL))
+                        {
+                            <a href="@Url.Action("Cancel", new { id = Model.RUID })" class="btn btn-app bg-red" style="color:White;"><i class="glyphicon glyphicon-remove-circle"></i> Cancel</a>
+                        }
+                    }
+                </span>
+
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.box-footer -->
+</div><!-- /.box -->
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Events");}
+
+}
+

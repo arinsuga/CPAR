@@ -1,0 +1,53 @@
+﻿@model APPBASE.Models.Complain_DetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "Logbook Complain";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section includeBOTTOM {
+    @Scripts.Render("~/bundles/JSInputMask")
+}
+
+@if (ViewBag.CRUDClosedOrCanceled == valFLAG.FLAG_TRUE) {
+    Html.RenderPartial("_PartialConfirmClosedOrCanceled"); 
+}
+
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+
+        <span class="btn-group pull-right">
+            @if (Model.COMPLAIN_STS == valFLAG.FLAG_COMPLAIN_STS_OPEN)
+            {
+                if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_COMPLAIN_CLOSE)) {
+                    <a href="@Url.Action("Close", new { id = Model.RUID })" class="btn btn-app bg-green" style="color:White;"><i class="glyphicon glyphicon-check"></i> Close</a>
+                }
+                if (hlpCredentialInfo.isGranted_menu(valMENU.CPAR_LOGBOOK_COMPLAIN_CANCEL))
+                {
+                    <a href="@Url.Action("Cancel", new { id = Model.RUID })" class="btn btn-app bg-red" style="color:White;"><i class="glyphicon glyphicon-remove-circle"></i> Cancel</a>
+                }
+            }
+        </span>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        @{Html.RenderPartial("_Inputs");}
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+        <div class="row">
+            <div class="col-xs-12">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.box-footer -->
+</div><!-- /.box -->
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Events");}
+
+}
+

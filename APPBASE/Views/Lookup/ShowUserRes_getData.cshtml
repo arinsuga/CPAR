@@ -1,0 +1,98 @@
+﻿@model IEnumerable<APPBASE.Models.lkpResForUserVM>
+
+@{
+    ViewBag.Title = "Daftar Karyawan";
+    Layout = "~/Views/Shared/_LayoutLookup.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+
+                @if (Model == null) { 
+                    <table class="table table-hover">
+                        <tr>
+                            <td style="width:100%;text-align:center;">@{Html.RenderPartial("_PartialEmpty");}</td>
+                        </tr>
+                    </table>
+                }
+
+                @if (Model != null)
+                {
+
+                <div class="input-group">
+                    <input type="text" name="searchValue" id="searchValue" class="form-control input-sm pull-right FieldEnableAlways" placeholder="Filter Data Karyawan"/>
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="LOOKUPROW">
+                        <td class="SEARCHABLE_ROWS_DEPT" style="width:50%;">
+                            @Html.DisplayFor(modelitem => item.DEPT_NM)
+                        </td>
+                        <td class="SEARCHABLE_ROWS_EMP" style="width:50%;">
+                            @Html.DisplayFor(modelitem => item.JOB_TITLE_NM) - 
+                            @Html.DisplayFor(modelitem => item.RES_NM1)
+                            <input type="hidden" class="RUID" value="@Html.DisplayFor(modelitem => item.RUID)" />
+                            <input type="hidden" class="ID" value="@Html.DisplayFor(modelitem => item.RES_NM1)" />
+                            <input type="hidden" class="NAME" value="@Html.DisplayFor(modelitem => item.RES_NM1)" />
+                        </td>
+                    </tr>
+                }
+                    </tbody>
+                </table>
+                }
+
+    </div><!-- /.col-xs-12 -->
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("#DialogLookupTitle").text("@ViewBag.Title");
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS_DEPT, .SEARCHABLE_ROWS_EMP');
+        $("#DialogLookupWait").hide();
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        $(".LOOKUPROW").click(function () {
+            var vsRUID = $(this).children().children(".RUID").val();
+            var vsID = $(this).children().children(".ID").val();
+            var vsNAME = $(this).children().children(".NAME").val();
+
+            var vsRUID_TAG = '@ViewBag.RUID_TAG';
+            var vsID_TAG = '@ViewBag.ID_TAG';
+            var vsNAME_TAG = '@ViewBag.NAME_TAG';
+            var vs_RSLTDATA_URL = '@ViewBag.RSLTDATA_URL';
+            var vs_RSLTDATA_TAG = '@ViewBag.RSLTDATA_TAG';
+
+            if (isEmptyString(vsRUID_TAG) != true) { $('#' + vsRUID_TAG).val(vsRUID); }
+            if (isEmptyString(vsID_TAG) != true) { $('#' + vsID_TAG).val(vsID); }
+            if (isEmptyString(vsNAME_TAG) != true) { $('#' + vsNAME_TAG).val(vsNAME); }
+            if (isEmptyString(vs_RSLTDATA_TAG) != true) {
+                var vsURL = BaseUrl + vs_RSLTDATA_URL;
+                var voDTO = { id: vsRUID };
+                jQuery.ajaxSettings.traditional = true;
+                $.ajax({ type: AJAXTypeGET(), url: vsURL, data: voDTO, traditional: true
+                }).done(function (data) {
+                    $('#' + vs_RSLTDATA_TAG).html(data);
+                }); //End $.ajax
+            } //End if (isEmptyString(vs_RSLTDATA_TAG) != true)
+
+            //$('#DialogLookup').dialog('close');
+            $('#DialogLookup').modal('hide')
+        }); //End  $(".LOOKUPROW").click()
+    });       //End $(document).ready
+</script>

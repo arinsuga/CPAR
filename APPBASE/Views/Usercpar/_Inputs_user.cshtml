@@ -1,0 +1,62 @@
+﻿@model APPBASE.Models.User_DetailCPARVM
+@using APPBASE.Helpers
+@using APPBASE.Svcapp
+@using APPBASE.Svcbiz
+
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; }
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["USR_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            @Html.LabelFor(model => model.USR_ID)
+
+            @if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE)
+            {
+                @Html.TextBoxFor(model => model.USR_ID, new { @class = "form-control", @id = "USR_ID", @placeholder = "Enter User ID" })
+            }
+            else
+            {
+                @Html.TextBoxFor(model => model.USR_ID, new { @class = "form-control", @id = "USR_ID", @readonly = "true", @placeholder = "Enter User ID" })
+            }
+            
+            @if (ViewData.ModelState["USR_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("USR_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["USR_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("USR_ID2")
+                    </label>
+            }
+        </div>
+    </div>
+</div><!-- /.row -->
+
+@if ((ViewBag.CRUD_type != hlpFlags_CRUDOption.DELETE) && (ViewBag.CRUD_type != hlpFlags_CRUDOption.VIEW))
+{
+    <div class="row">
+        <div class="col-xs-12">
+             @if (ViewData.ModelState["USR_PSWD0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+            <div class="form-group @vsErrClass">
+                @Html.LabelFor(model => model.USR_PSWD)
+                @Html.PasswordFor(model => model.USR_PSWD, new { @class = "form-control", @id = "USR_PSWD", placeholder = "Enter User Password" })
+                @if (ViewData.ModelState["USR_PSWD1"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("USR_PSWD1")
+                        </label>
+                }
+            </div>
+        </div>
+    </div><!-- /.row -->
+}

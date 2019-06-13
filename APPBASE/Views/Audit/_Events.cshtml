@@ -1,0 +1,27 @@
+﻿
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupDEPT_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'DEPT_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'DEPT_NM'; //NM
+            showLookup('Lookup/ShowDept', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+
+
+    }); //End $(document).ready
+</script>
+

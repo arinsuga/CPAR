@@ -1,0 +1,93 @@
+﻿@model APPBASE.Models.Complain_DetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["COMPLAIN_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="COMPLAIN_ID">No. Complain [Max: @valFLAG.FLAG_MAXLENGTH_ID Character]</label>
+            <input type="text" id="COMPLAIN_ID" name="COMPLAIN_ID" value="@Html.DisplayFor(model => model.COMPLAIN_ID)" class="form-control" maxlength="@valFLAG.FLAG_MAXLENGTH_ID" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["COMPLAIN_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("COMPLAIN_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["COMPLAIN_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("COMPLAIN_ID2")
+                    </label>
+            }
+            @if (ViewData.ModelState["COMPLAIN_ID3"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("COMPLAIN_ID3")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["COMPLAIN_TYPE0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="COMPLAIN_TYPE">Jenis Complain</label>
+            @if (!isShowDropdown)
+            {
+
+                Html.HiddenFor(Model => Model.COMPLAIN_TYPE);
+                <input type="text" id="COMPLAIN_TYPE_NM" name="COMPLAIN_TYPE_NM" value="@Html.DisplayFor(model => model.COMPLAIN_TYPE_NM)" class="form-control" readonly />
+            }
+            else
+            {
+                    <select class="form-control" id="COMPLAIN_TYPE" name="COMPLAIN_TYPE" >
+                        @if (ViewBag.COMPLAIN_TYPE_LOV != null)
+                        {
+                            foreach (var item in ViewBag.COMPLAIN_TYPE_LOV)
+                            {
+                                if (Model.COMPLAIN_TYPE != null)
+                                {
+                                    if (Model.COMPLAIN_TYPE == item.RUID)
+                                    { <option value="@item.RUID" selected>@item.LOV_NM</option> }
+                                    else
+                                    { <option value="@item.RUID">@item.LOV_NM</option> }
+                                }
+                                else
+                                { <option value="@item.RUID">@item.LOV_NM</option> }
+
+                            }
+                        }
+                    </select>
+            }
+            
+
+            @if (ViewData.ModelState["COMPLAIN_TYPE1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("COMPLAIN_TYPE1")
+                    </label>
+            }
+            @if (ViewData.ModelState["COMPLAIN_TYPE2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("COMPLAIN_TYPE2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+

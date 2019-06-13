@@ -1,0 +1,87 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("[data-mask]").inputmask(); //Optional if contains date field(s)
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupAUDITOR_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'AUDITOR_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'AUDITOR_NM'; //NM
+            showLookup('Lookup/ShowEmp', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupAUDITEE_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'AUDITEE_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'AUDITEE_NM'; //NM
+            showLookup('Lookup/ShowEmp', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupAUDIT_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'AUDIT_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'AUDIT_NM'; //NM
+            showLookup('Lookup/ShowAudit', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp_additems [[[::DESCRIPTION::]]]
+        $("#cmdLookupSTDREF_NM").click(function () {
+            var vaExistinglist = new Array();
+            $(".EXISTING_ITEMS").each(function (index) {
+                vaExistinglist.push($(this).val());
+            });
+            var vaSelectedlist = new Array();
+            $(".SELECTED_ITEMS").each(function (index) {
+                vaSelectedlist.push($(this).val());
+            });
+            //showLookup_Additems('CPARAudit/ShowStandardreff', '', vaExistinglist, vaSelectedlist);
+            showLookup_Additems('CPAR/ShowStandardreff', '', vaExistinglist, vaSelectedlist);
+        }); //End  $("#btnLookup").click
+        $("#cmdADDItem").click(function () {
+            var vaExistinglist = new Array();
+            $(".EXISTING_ITEMS").each(function (index) {
+                vaExistinglist.push($(this).val());
+            });
+            var vaSelectedlist = new Array();
+            $(".SELECTED_ITEMS").each(function (index) {
+                vaSelectedlist.push($(this).val());
+            });
+
+            var vaSelectnewlist = new Array();
+            $(".LIST_ITEMS").each(function (index) {
+                if ($(this).prop('checked')) {
+                    vaSelectnewlist.push($(this).val());
+                }
+            });
+            //showLookup_Result('CPARAudit/ShowStandardreff_resultlist', '', vaExistinglist, vaSelectedlist, vaSelectnewlist);
+            showLookup_Result('CPAR/ShowStandardreff_resultlist', '', vaExistinglist, vaSelectedlist, vaSelectnewlist);
+            $('#DialogLookup_additems').modal('hide')
+        }); //End  $(".LOOKUPROW").click()
+
+        $(".cmdREMOVE_ITEM").click(function () {
+            $(this).parent().parent().remove();
+        }); //End  $(".LOOKUPROW").click()
+
+    });        //End $(document).ready
+</script>
+

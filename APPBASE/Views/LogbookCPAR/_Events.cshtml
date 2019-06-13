@@ -1,0 +1,64 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("[data-mask]").inputmask(); //Optional if contains date field(s)
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupAUDITOR_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'AUDITOR_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'AUDITOR_NM'; //NM
+            showLookup('Lookup/ShowEmp', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupAUDITEE_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'AUDITEE_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'AUDITEE_NM'; //NM
+            showLookup('Lookup/ShowEmp', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupAUDIT_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'AUDIT_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'AUDIT_NM'; //NM
+            showLookup('Lookup/ShowAudit', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupSTDREF_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'STDREF_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'STDREF_NM'; //NM
+            showLookup('Lookup/ShowStandardreff', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+
+
+
+    });    //End $(document).ready
+</script>
+

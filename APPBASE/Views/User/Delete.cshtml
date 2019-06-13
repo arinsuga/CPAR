@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Hapus User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-danger alert-dismissable">
+    <i class="fa fa-ban"></i>
+    <b>Perhatian!</b>
+    Pastikan anda tidak salah menghapus data user.
+</div>
+
+@using (Html.BeginForm()) {
+    <div class="box box-danger">
+        <div class="box-header">
+            <h3 class="box-title"></h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            @{Html.RenderPartial("_Inputs");}
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-danger btn-flat">Delete</button>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.box-footer -->
+    </div><!-- /.box -->
+}

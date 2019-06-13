@@ -1,0 +1,39 @@
+﻿@model APPBASE.Models.Complain_DetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-6">
+        <div class="row">
+            @Html.HiddenFor(model => model.RECIPIENT_RUID, new { id = "RECIPIENT_RUID" })
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="RECIPIENT_NM">Penerima Complain</label>
+                    <input type="text" id="RECIPIENT_NM" name="RECIPIENT_NM" value="@Html.DisplayFor(model => model.RECIPIENT_NM)" class="form-control" readonly />
+                </div> <!-- /.form-group -->
+            </div> <!-- /.col-xs-12 -->
+        </div><!-- /.row -->
+    </div>
+    
+    <div class="col-xs-6">
+        <div class="row">
+            @Html.HiddenFor(model => model.PIC_RUID, new { id = "PIC_RUID" })
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="PIC_NM">PIC Penanganan Complain</label>
+                    <input type="text" id="PIC_NM" name="PIC_NM" value="@Html.DisplayFor(model => model.PIC_NM)" class="form-control" readonly />
+                </div> <!-- /.form-group -->
+            </div> <!-- /.col-xs-12 -->
+        </div><!-- /.row -->
+    </div>
+</div>
+
+

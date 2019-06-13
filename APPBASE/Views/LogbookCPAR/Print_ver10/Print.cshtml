@@ -1,0 +1,161 @@
+﻿@model APPBASE.Models.CPAR_VerifyVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "Print Preview - Logbook CPAR " + ViewBag.CPAR_TYPE_NM;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Print = "invoice";
+}
+@section includeTOP {
+    <link href="@Url.Content("~/Content/")print.css" rel="stylesheet" type="text/css" />
+}
+@section includeBOTTOM {
+    @Scripts.Render("~/bundles/JSInputMask")
+}
+
+
+@if (ViewBag.CRUDSavedOrDelete == valFLAG.FLAG_TRUE) {
+      Html.RenderPartial("_PartialConfirmSaved"); 
+}
+
+@{string vsClassCPAR_STS = "";}
+@{
+    if (Model.CPAR_STS == valFLAG.FLAG_CPAR_STS_CLOSED) { vsClassCPAR_STS = "btn btn-app bg-green"; }
+    if (Model.CPAR_STS == valFLAG.FLAG_CPAR_STS_CANCELED) { vsClassCPAR_STS = "btn btn-app bg-red"; }
+}
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="5">
+                <div class="print-title">
+                    <div><img src="../../Images/Company_Logo.png" /></div>
+                    <div>CORRECTIVE / PREVENTIVE ACTION REQUEST</div>
+                    <div>(CPAR)</div>
+                </div>
+                <div>No. CPAR : @Model.CPAR_ID</div>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody class="border">
+        <!-- info row 1A -->
+        <tr class="border-bottom">
+            <td colspan="3" class="">@{Html.RenderPartial("_Print_subtype");}</td>
+            <td colspan="2" class="border-left title-bold">Sumber</td>
+        </tr>
+        <!-- info row 1B -->
+        <tr class="">
+            <td colspan="3" class="">@{Html.RenderPartial("_Print_person");}</td>
+            <td colspan="2" rowspan="3" class="border-left">@{Html.RenderPartial("_Print_type");}</td>
+        </tr>
+        <!-- info row 1C -->
+        <tr class="">
+            <td colspan="3" class="border-top border-bottom title-bold">Referensi/Standar</td>
+            <td colspan="2" class=""></td>
+        </tr>
+        <!-- info row 1D -->
+        <tr class="">
+            <td colspan="3" class="">@{Html.RenderPartial("_Print_stdreff");}</td>
+            <td colspan="2" class=""></td>
+        </tr>
+
+        <!-- info row 2A -->
+        <tr class="border-top border-bottom">
+            <td colspan="4" class="title-bold">Temuan / Ketidaksesuaian / Potensi Masalah</td>
+            <td colspan="1" class="border-left title-bold">Diterima PIC/Auditee</td>
+        </tr>
+        <!-- info row 2B -->
+        <tr class="">
+            <td colspan="4" class=""><p class="wrap">@Model.CPAR_DESC</p></td>
+            <td colspan="1" class="border-left align-top no-padding">
+                <div class="padding-all">
+                    <div>@Model.AUDITEEDEPT_NM - @Model.AUDITEE_NM</div>
+                    <div>Tanggal : @hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(Model.CPAR_DT)</div>
+                </div>
+                <div class="border-top border-bottom margin-top title-bold"><span class="padding-all">Tanggal Penyelesaian :</span></div>
+                <div class="padding-all">@hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(Model.CPAR_FINISH_DT)</div>
+            </td>
+        </tr>
+
+        <!-- info row 3A -->
+        <tr class="border-top border-bottom">
+            <td colspan="5" class="title-bold">Akar Penyebab (diisi oleh pihak yang menerima CPAR)</td>
+        </tr>
+        <!-- info row 3B -->
+        <tr class="">
+            <td colspan="5" class=""><p class="wrap">@Model.CPAR_RESOLUTION1</p></td>
+        </tr>
+
+        <!-- info row 4A -->
+        <tr class="border-top border-bottom">
+            <td colspan="4" class="title-bold">Tindakan Korektif / Tindakan Pencegahan</td>
+            <td colspan="1" class="border-left title-bold">Dok. Terkait yang harus direvisi :</td>
+        </tr>
+        <!-- info row 4b -->
+        <tr class="">
+            <td colspan="4" class="">
+                <div class="title-bold">Koreksi</div>
+                <div><p class="wrap">@Model.CPAR_RESOLUTION2</p></div>
+
+                <div class="title-bold">Korektif</div>
+                <div><p class="wrap">@Model.CPAR_RESOLUTION3</p></div>
+            </td>
+            <td colspan="1" class="border-left no-padding">
+                <div class="padding-all">
+                    <div><span><i class="fa fa-fw fa-square-o"></i> Prosedure</span></div>
+                    <div><span><i class="fa fa-fw fa-square-o"></i> Instruksi Kerja (IK)</span></div>
+                    <div><span><i class="fa fa-fw fa-square-o"></i> Dokumen lain :</span></div>
+                </div>
+
+                <div class="border-top border-bottom padding-all title-bold">Diperiksa Oleh :</div>
+                <div class="padding-all">@Model.AUDITOR_NM</div>
+            </td>
+        </tr>
+
+        <!-- info row 5A -->
+        <tr class="border-top border-bottom">
+            <td colspan="3" class="title-bold">Verifikasi I (diisi oleh penemu/Auditor)</td>
+            <td colspan="1" class="border-left title-bold">Status :</td>
+            <td colspan="1" class="border-left title-bold">Diverifikasi oleh :</td>
+        </tr>
+        <!-- info row 5B -->
+        <tr class="border-top border-bottom">
+            <td colspan="3" class="">
+                <div><span class="title-bold">Tanggal</span> : @hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(Model.VFKS1_DT)</div>
+                <div><span class="title-bold">Komentar</span> : <p>@Model.VFKS1_DESC</p></div>
+            </td>
+            <td colspan="1" class="border-left">
+                <div><span><i class="fa fa-fw fa-square-o"></i> Selesai/Efektif (SE)</span></div>
+                <div><span><i class="fa fa-fw fa-square-o"></i> Terbit Ulang (TU)</span></div>
+            </td>
+            <td colspan="1" class="border-left"></td>
+        </tr>
+
+        <!-- info row 6A -->
+        <tr class="border-top border-bottom">
+            <td colspan="3" class="title-bold">Verifikasi II</td>
+            <td colspan="1" class="border-left title-bold">Catatan Tambahan :</td>
+            <td colspan="1" class="border-left"></td>
+        </tr>
+        <!-- info row 6B -->
+        <tr class="border-top border-bottom">
+            <td colspan="3" class="">
+                <div><span class="title-bold">Tanggal</span> : @hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(Model.VFKS2_DT)</div>
+                <div><span class="title-bold">Komentar</span> : <p>@Model.VFKS2_DESC</p></div>
+            </td>
+            <td colspan="1" class="border-left"></td>
+            <td colspan="1" class="border-left"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Events");}
+
+}
+

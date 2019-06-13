@@ -1,0 +1,60 @@
+﻿@model APPBASE.Models.Complain_DetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["DESCRIPTION0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="DESCRIPTION">Penjelasan Complain</label>
+            <textarea id="DESCRIPTION" name="DESCRIPTION" class="form-control" @vsReadonlyTextbox>@Html.DisplayFor(model => model.DESCRIPTION)</textarea>
+
+
+            @if (ViewData.ModelState["DESCRIPTION1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("DESCRIPTION1")
+                    </label>
+            }
+            @if (ViewData.ModelState["DESCRIPTION2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("DESCRIPTION2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["SOLUTION0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="SOLUTION">Koreksi</label>
+            <textarea id="SOLUTION" name="SOLUTION" class="form-control" @vsReadonlyTextbox>@Html.DisplayFor(model => model.SOLUTION)</textarea>
+
+
+            @if (ViewData.ModelState["SOLUTION1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("SOLUTION1")
+                    </label>
+            }
+            @if (ViewData.ModelState["SOLUTION2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("SOLUTION2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->

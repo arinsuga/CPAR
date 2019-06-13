@@ -1,0 +1,21 @@
+﻿@model APPBASE.Models.CPAR_VerifyVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{string sCPAR_TYPE_style = "fa-square-o";}
+@{string sCLASS_RUID_style = "fa-circle-o";}
+        @foreach (var item in Model.CPAR_TYPE_LOV)
+        {
+            sCPAR_TYPE_style = "fa-square-o";
+            if (item.RUID == Model.CPAR_TYPE) { sCPAR_TYPE_style = "fa-check-square-o"; }
+            <div><span><i class="fa fa-fw  @sCPAR_TYPE_style"></i> @item.LOV_NM</span></div>
+            
+            if (item.RUID == @valFLAG.FLAG_CPAR_TYPE_IA) {
+                foreach (var item2 in Model.CLASS_RUID_LOV)
+                {
+                    sCLASS_RUID_style = "fa-circle-o";
+                    if (item2.RUID == Model.CLASS_RUID) { sCLASS_RUID_style = "fa-dot-circle-o"; }
+                    <span><i class="fa fa-fw  @sCLASS_RUID_style"></i> @item2.LOV_NM</span>
+                }
+            }
+        }

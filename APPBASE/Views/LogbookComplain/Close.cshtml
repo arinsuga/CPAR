@@ -1,0 +1,56 @@
+﻿@model APPBASE.Models.Complain_DetailVM
+@using APPBASE.Helpers
+
+@{
+    ViewBag.Title = "Close Complain";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section includeBOTTOM {
+    @Scripts.Render("~/bundles/JSInputMask")
+}
+
+@using (Html.BeginForm())
+{
+Html.RenderPartial("_PartialConfirmClose");
+
+@Html.HiddenFor(model => model.RUID)
+
+if (ViewData.ModelState["COMPLAIN_STS0"] != null) {
+    <!-- Confirm Delete -->
+    <div class="alert alert-danger alert-dismissable">
+        <i class="fa fa-warning"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <b>Terjadi Kesalahan!</b>
+        <p>@Html.ValidationMessage("COMPLAIN_STS1")</p>
+    </div>
+}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        @{Html.RenderPartial("_Inputs");}
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+        <div class="row">
+            <div class="col-xs-12">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.box-footer -->
+</div><!-- /.box -->
+
+}
+
+<!-- Modal -->
+@{Html.RenderPartial("_PartialDialogLookup");}
+
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Events");}
+
+}
+

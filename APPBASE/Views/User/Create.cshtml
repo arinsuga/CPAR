@@ -1,0 +1,88 @@
+﻿@model APPBASE.Models.User_DetailVM
+
+@{
+    ViewBag.Title = "Tambah Data User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    
+    @Html.ValidationSummary(true)
+
+    <div class="box box-info">
+        <div class="box-header">
+            <div class="row">
+                <div class="col-xs-6">
+                </div>
+                <div class="col-xs-6">
+                    <div class="box-tools margin">
+                        <button class="btn btn-flat btn-info pull-right" type="button" id="cmdLookupRES" name="cmdLookupRES" data-toggle="modal" data-target="#DialogLookup">
+                            <i class="fa fa-edit"></i> Buat User Untuk Karyawan
+                        </button>
+                    </div>
+                    <h3 class="box-title"></h3>
+                </div>
+            </div>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    @{Html.RenderPartial("_Inputs");}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="RSLTDATA_TAG"></div>
+                </div>
+            </div>
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-flat btn-primary">Simpan</button>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.box-footer -->
+    </div><!-- /.box -->
+}
+
+<!-- Modal -->
+@{Html.RenderPartial("_PartialDialogLookup");}
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Command LookUp [Employee=]
+        $("#cmdLookupRES").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+
+//            showLookup_LoadSingle('Lookup/ShowUserRes_getData', '', vaSearchValue,
+//                                  'User/_Create_showData', 'RSLTDATA_TAG',
+//                                  'RES_RUID', '', 'RES_NM1');
+
+            showLookup_LoadSingle('Lookup/ShowUserRes_getData', '', vaSearchValue,
+                                  'User/_Create_showData', '',
+                                  'RES_RUID', 'USR_ID', 'USR_NM1');
+
+        }); //End  $("#btnLookup").click
+        //Command Reset
+        $("#cmdReset").click(function () {
+            return true;
+        });
+    });  //End $(document).ready
+</script>
+
+}

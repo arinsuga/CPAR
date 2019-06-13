@@ -1,0 +1,155 @@
+﻿@model  APPBASE.Models.FilterCPAR_DetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+
+@{
+    ViewBag.Title = "Logbook CPAR";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section includeBOTTOM {
+    @Scripts.Render("~/bundles/JSInputMask")
+}
+
+@{string vsClassCPAR_RSPNLMT_DT = "";}
+@{string vsClassCPAR_STS = "";}
+@{string vsClassCPAR_STEP = "";}
+
+@if (ViewBag.CRUDSavedOrDelete == valFLAG.FLAG_TRUE)
+{
+    Html.RenderPartial("_PartialConfirmDeleted"); 
+}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        <div class="box-tools">
+            <div class="input-group">
+                <input type="text" id="searchValue" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Cari CPAR"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-flat btn-sm btn-info" style="margin-left:5px; color:White;" data-toggle="modal" data-target="#DialogFilter"><i class="fa fa-filter"></i> Advance Filter</button>
+                    <a href="@Url.Action("Index")" class="btn btn-flat btn-sm btn-info" style="margin-left:5px; color:White;"><i class="fa fa-bars"></i> View All</a>
+                    <a href="@Url.Action("LogbookCPAR_XLS", "Export")" class="btn btn-flat btn-sm btn-warning" style="margin-left:5px; color:White;"><i class="fa fa-file-excel-o fa-lg"></i> Save to Excel</a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>CPAR</th>
+                    <th>
+                        <div>Batas Tanggal</div>
+                        <div>Tanggapan</div>
+                    </th>
+                    @if ((hlpConfig.SessionInfo.getAppRoleRUID() == valFLAG.FLAG_ROLE_SYSADMIN) ||
+                        (hlpConfig.SessionInfo.getAppRoleRUID() == valFLAG.FLAG_ROLE_CPAR_ADMIN))
+                    {
+                        <th>
+                            <div>Batas Tanggal</div>
+                            <div>Verifikasi</div>
+                        </th>
+                    }
+                    <th>
+                        <div>Batas Tanggal</div>
+                        <div>Penyelesaian</div>
+                    </th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (ViewBag.Model == null)
+                {
+                    <tr>
+                        <td colspan="3" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in ViewBag.Model)
+                {
+                    <tr>
+                        <td>
+                                <a href="@Url.Action("Details", new { id = item.RUID })" class="btn btn-flat btn-sm btn-success" style="margin-left:5px; color:White;"><i class="fa fa-eye"></i> View Detail</a>
+                        </td>
+                        <td class="SEARCHABLE_ROWS">
+                            <div>
+                             @{
+                    vsClassCPAR_STEP = "badge bg-red";
+                    if (item.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_CREATED) { vsClassCPAR_STEP = "badge bg-yellow"; }
+                    if (item.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_RESPONDED) { vsClassCPAR_STEP = "badge bg-purple"; }
+                    if (item.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_VERIFIED) { vsClassCPAR_STEP = "badge bg-green"; }
+                              }                          
+                              <span class="@vsClassCPAR_STEP">@item.CPAR_STEP_NM</span>   
+                            </div>
+                            <div class="text-light-blue">
+                                <span style="font-weight:bold;font-style:italic;">No. CPAR : @item.CPAR_ID </span> - @item.CPAR_TYPE_NM (@hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.CPAR_DT))
+                            </div>
+                            <div class="text-light-blue">
+                                <span style="font-weight:bold;font-style:italic;">@item.AUDITEEDEPT_NM</span>
+                            </div>
+                            <p class="truncate">@item.CPAR_DESC</p>
+                        </td>
+
+                        <td>
+                             @if ((item.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_CREATED) && (item.CPAR_STS == valFLAG.FLAG_CPAR_STS_OPEN))
+                             { @hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.CPAR_RSPNLMT_DT) }
+                        </td>
+                    @if ((hlpConfig.SessionInfo.getAppRoleRUID() == valFLAG.FLAG_ROLE_SYSADMIN) ||
+                        (hlpConfig.SessionInfo.getAppRoleRUID() == valFLAG.FLAG_ROLE_CPAR_ADMIN))
+                    { 
+                        <td>
+                            @if ((item.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_RESPONDED) && (item.CPAR_STS == valFLAG.FLAG_CPAR_STS_OPEN))
+                            { @hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.CPAR_VERLMT_DT) }
+                        </td>
+                    }
+                        <td>
+                            <div>
+                                @if ((item.CPAR_STEP == valFLAG.FLAG_CPAR_STEP_VERIFIED) &&
+                                    (item.CPAR_STS == valFLAG.FLAG_CPAR_STS_OPEN))
+                                {
+                                    <span class="@ViewBag.Services.getBADGECOLOR_finishdate(item)">
+                                        @hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.CPAR_FINISH_DT)
+                                    </span>
+                                }
+                            </div>
+                        </td>
+
+                        <td>
+                            @{
+                                vsClassCPAR_STS = "badge bg-yellow";
+                                if (item.CPAR_STS == valFLAG.FLAG_CPAR_STS_CLOSED) { vsClassCPAR_STS = "badge bg-green"; }
+                                if (item.CPAR_STS == valFLAG.FLAG_CPAR_STS_CANCELED) { vsClassCPAR_STS = "badge bg-red"; }
+                             }
+                             <div>
+                                <span class="@vsClassCPAR_STS">@item.CPAR_STS_NM</span>
+                             </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+@using (Html.BeginForm())
+{
+    <div>
+        <!-- Modal -->
+        @{Html.RenderPartial("_PartialDialogFilter");}
+    </div>
+}
+
+<!-- Modal -->
+@{Html.RenderPartial("_PartialDialogLookup");}
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Eventfilters_CPAR");}
+
+}
+
+

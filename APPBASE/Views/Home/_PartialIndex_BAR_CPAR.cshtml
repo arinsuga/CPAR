@@ -1,0 +1,37 @@
+﻿
+<input type="hidden" id="nIA" name="nIA" value="@ViewBag.nIA" />
+<input type="hidden" id="nTM" name="nTM" value="@ViewBag.nTM" />
+<input type="hidden" id="nPP" name="nPP" value="@ViewBag.nPP" />
+<input type="hidden" id="nPI" name="nPI" value="@ViewBag.nPI" />
+<input type="hidden" id="nCC" name="nCC" value="@ViewBag.nCC" />
+<input type="hidden" id="nLL" name="nLL" value="@ViewBag.nLL" />
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "CPAR_BARCHART" }))
+{        
+<!-- Bar chart -->
+<div class="box box-info">
+    <div class="box-header">
+        <i class="fa fa-bar-chart-o"></i>
+        <h3 class="box-title">Sumber CPAR</h3>
+        <div class="box-tools pull-right">
+            <label>Tahun</label>
+            @{string sSelected = "";}
+            <select id="CPAR_YEAR" name="CPAR_YEAR" class="form-control">
+                @foreach (var item in ViewBag.YEARLIST)
+                {
+                    if (ViewBag.CPAR_MAXYEAR == item.CPAR_YEARS) { sSelected = "selected"; }
+                    else { sSelected = ""; }
+                    <option @sSelected>@item.CPAR_YEARS</option>
+                }
+            </select>
+        </div> <!-- /.box-tools -->
+    </div>
+    <div class="box-body">
+        <div class="chart" id="bar-chart" style="height: 300px;"></div>
+    </div><!-- /.box-body-->
+    <div class="box-footer">
+    </div> <!-- /.box-footer -->
+</div><!-- /.box -->
+
+}

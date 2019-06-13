@@ -1,0 +1,15 @@
+﻿@model APPBASE.Models.CPAR_VerifyVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+
+<table>
+    @foreach (var item in Model.STDREF_LIST)
+    {
+        <tr>
+            <td>@item.STDREF_ID</td>
+            <td> - </td>
+            <td>@item.STDREF_NM</td>
+        </tr>
+    }
+</table>

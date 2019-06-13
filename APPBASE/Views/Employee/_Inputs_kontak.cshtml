@@ -1,0 +1,81 @@
+﻿@model APPBASE.Models.Employee_DetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; }
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PHN_HMO10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PHN_HMO1">Telepon Rumah</label>
+            <input type="text" id="PHN_HMO1" name="PHN_HMO1" value="@Html.DisplayFor(model => model.PHN_HMO1)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["PHN_HMO11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PHN_HMO11")
+                    </label>
+            }
+            @if (ViewData.ModelState["PHN_HMO12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PHN_HMO12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PHN_MBL10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PHN_MBL1">HP</label>
+            <input type="text" id="PHN_MBL1" name="PHN_MBL1" value="@Html.DisplayFor(model => model.PHN_MBL1)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["PHN_MBL11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PHN_MBL11")
+                    </label>
+            }
+            @if (ViewData.ModelState["PHN_MBL12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PHN_MBL12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["MAIL10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="MAIL1">Email</label>
+            <input type="text" id="MAIL1" name="MAIL1" value="@Html.DisplayFor(model => model.MAIL1)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["MAIL11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MAIL11")
+                    </label>
+            }
+            @if (ViewData.ModelState["MAIL12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MAIL12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+
+

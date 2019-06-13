@@ -1,0 +1,60 @@
+﻿@model List<APPBASE.Models.Userrolemenu_ListVM>
+
+@{
+    string vsmenuGroupClass = "";
+    string vsmenuItemStyle = "";
+}
+
+
+@if (Model != null)
+{
+    <div class="box-group" id="accordion">
+        <div class="panel box box-danger">
+            <!-- TITLE start -->
+            <div class="box-header">
+                <h4 class="box-title">
+                    <i class="fa fa-bars"></i> 
+                    <a data-toggle="collapse" data-parent="#accordion" href="#Menulist">
+                        Daftar Hak Akses
+                    </a>
+                </h4>
+            </div> <!-- TITLE end -->
+            <!-- BODY start -->
+            <div id="Menulist" class="panel-collapse collapse in">
+                <div class="box-body">
+                    <table class="table table-hover">
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            if (Model[i].MNU_TYPE == "GRP") { vsmenuGroupClass = "class=\"bg-aqua\""; vsmenuItemStyle = ""; }
+                            else { vsmenuGroupClass = ""; vsmenuItemStyle = "style=\"padding-left:" + (Model[i].MNU_LEVEL * 10).ToString() + "px;\""; }
+                            <tr>
+                                <td @Html.Raw(vsmenuGroupClass) @Html.Raw(vsmenuItemStyle)>
+                                    @Model[i].MNU_CAPTION
+                                    <input type="hidden" name="Userrolemenu_ListVM[@i].MNU_RUID" value="@Model[i].MNU_RUID" />
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div> <!-- BODY ITEMS -->
+            </div> <!-- BODY end -->
+        </div> <!-- /.panel box box-danger -->
+    </div> <!-- /#accordion -->
+    
+    
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+
+        /*=========================================
+        EVENTS 
+        =========================================*/
+
+        /*=========================================
+        FUNCTIONS
+        =========================================*/
+    });    //End $(document).ready
+</script>
+}
+

@@ -1,0 +1,82 @@
+﻿@model APPBASE.Models.User_DetailVM
+@using APPBASE.Helpers
+
+
+
+
+@Html.HiddenFor(model => model.RES_RUID, new { id = "RES_RUID" })
+@{string vsErrClass = "";}
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["USR_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            @Html.LabelFor(model => model.USR_ID)
+
+            @if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE)
+            {
+                @Html.TextBoxFor(model => model.USR_ID, new { @class = "form-control", @id = "USR_ID", @placeholder = "Enter User ID" })
+            }
+            else
+            {
+                @Html.TextBoxFor(model => model.USR_ID, new { @class = "form-control", @id = "USR_ID", @readonly = "true", @placeholder = "Enter User ID" })
+            }
+            
+            @if (ViewData.ModelState["USR_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("USR_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["USR_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("USR_ID2")
+                    </label>
+            }
+        </div>
+    </div>
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+         @if (ViewData.ModelState["USR_NM10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            @Html.LabelFor(model => model.USR_NM1)
+
+            @if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW))
+            {
+                @Html.TextBoxFor(model => model.USR_NM1, new { @class = "form-control", @id = "USR_NM1", @readonly = "true", @placeholder = "Enter User Name" })
+            }
+            else
+            {
+                @Html.TextBoxFor(model => model.USR_NM1, new { @class = "form-control", @id = "USR_NM1", @placeholder = "Enter User Name" })
+            }
+            @if (ViewData.ModelState["USR_NM11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("USR_NM11")
+                    </label>
+            }
+        </div>
+    </div>
+</div><!-- /.row -->
+
+@if ((ViewBag.CRUD_type != hlpFlags_CRUDOption.DELETE) && (ViewBag.CRUD_type != hlpFlags_CRUDOption.VIEW))
+{
+    <div class="row">
+        <div class="col-xs-12">
+             @if (ViewData.ModelState["USR_PSWD0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+            <div class="form-group @vsErrClass">
+                @Html.LabelFor(model => model.USR_PSWD)
+                @Html.PasswordFor(model => model.USR_PSWD, new { @class = "form-control", @id = "USR_PSWD", placeholder = "Enter User Password" })
+                @if (ViewData.ModelState["USR_PSWD1"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("USR_PSWD1")
+                        </label>
+                }
+            </div>
+        </div>
+    </div><!-- /.row -->
+}

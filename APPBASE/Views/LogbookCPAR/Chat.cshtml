@@ -1,0 +1,81 @@
+﻿@model APPBASE.Models.CPARChat_DetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcapp
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "Diskusi CPAR";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassBP_STS = "";}
+
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-xs-4">
+                <h4 class="text-light-blue">
+                    <span style="font-weight:bold;font-style:italic;">@Model.CPAR_ID</span>
+                </h4>
+                <p>@Model.CPAR_ID </p>
+            </div> <!-- /.col-xs-2 -->
+            <div class="col-xs-8">
+                @using (Html.BeginForm()) {
+                    @Html.HiddenFor(model=>model.CPAR_RUID)
+                    <div class="row" style="padding-bottom:15px;">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <input type="text" id="CHAT_DESC_PLAIN" name="CHAT_DESC_PLAIN" class="form-control input-sm pull-right" placeholder="Ketik pesan..."/>
+                                <div class="input-group-btn">
+                                    <input class="btn btn-flat btn-sm btn-info" type="submit" value="Submit" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <hr />
+                @{int i = 0;}
+                @foreach (var item in Model.CPARCHAT)
+                {
+                    i++;
+                    if (i > 1) { <hr /> }
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <img src="@Url.Content("~/")App_DataUpload/EmpPhoto/@Utility_FileUploadDownload.getImage_Employeechat(item.IMG_SRC)" alt="Foto Karyawan" />
+                        </div>
+                        <div class="col-xs-10">
+                            <div class="text-light-blue">
+                                <span style="font-weight:bold;font-style:italic;">@item.USR_NM1</span>
+                                - @hlpConvertionAndFormating.ConvertDateToStringDateLongFmt(item.ADTRL_DT)
+                            </div>
+                            <div>@item.CHAT_DESC_PLAIN</div>
+                        </div>
+                    </div>
+                }
+            </div> <!-- /.col-xs-10 -->
+        </div> <!-- /.row -->
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+    });   //End $(document).ready
+</script>
+
+}
+

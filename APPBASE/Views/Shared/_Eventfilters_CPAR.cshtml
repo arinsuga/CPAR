@@ -1,0 +1,52 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+        $("[data-mask]").inputmask(); //Optional if contains date field(s)
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupCPAR_TYPE_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'CPAR_TYPE'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'CPAR_TYPE_NM'; //NM
+            showLookup('Lookup/ShowCPARType', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupAUDIT_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'AUDIT_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'AUDIT_NM'; //NM
+            showLookup('Lookup/ShowAudit', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [[[::DESCRIPTION::]]]
+        $("#cmdLookupAUDITEEDEPT_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'AUDITEEDEPT_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'AUDITEEDEPT_NM'; //NM
+            showLookup('Lookup/ShowDept', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp_additems [[[::DESCRIPTION::]]]
+
+    }); //End $(document).ready
+</script>
+

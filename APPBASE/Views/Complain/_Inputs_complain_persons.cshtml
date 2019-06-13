@@ -1,0 +1,83 @@
+﻿@model APPBASE.Models.Complain_DetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-6">
+        <div class="row">
+            @Html.HiddenFor(model => model.RECIPIENT_RUID, new { id = "RECIPIENT_RUID" })
+            <div class="col-xs-12">
+                @if (ViewData.ModelState["RECIPIENT_RUID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+                <div class="form-group @vsErrClass">
+                    <label for="RECIPIENT_NM">Penerima Complain</label>
+
+
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="RECIPIENT_NM" name="RECIPIENT_NM" value="@Html.DisplayFor(model => model.RECIPIENT_NM)" class="form-control" readonly />
+                        <span class="input-group-btn">
+                            <button type="button" id="cmdLookupRECIPIENT_NM" name="cmdLookupRECIPIENT_NM" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup" @vsDisableButton><i class="fa fa-search"></i></button>
+                        </span>
+                    </div><!-- /input-group -->
+
+            
+                    @if (ViewData.ModelState["RECIPIENT_RUID1"] != null)
+                    {
+                            <label class="control-label" for="inputError">
+                            <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("RECIPIENT_RUID1")
+                            </label>
+                    }
+                    @if (ViewData.ModelState["RECIPIENT_RUID2"] != null)
+                    {
+                            <label class="control-label" for="inputError">
+                            <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("RECIPIENT_RUID2")
+                            </label>
+                    }
+                </div> <!-- /.form-group -->
+            </div> <!-- /.col-xs-12 -->
+        </div><!-- /.row -->
+    </div>
+    
+    <div class="col-xs-6">
+        <div class="row">
+            @Html.HiddenFor(model => model.PIC_RUID, new { id = "PIC_RUID" })
+            <div class="col-xs-12">
+                @if (ViewData.ModelState["PIC_RUID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+                <div class="form-group @vsErrClass">
+                    <label for="PIC_NM">PIC Penanganan Complain</label>
+
+
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="PIC_NM" name="PIC_NM" value="@Html.DisplayFor(model => model.PIC_NM)" class="form-control" readonly />
+                        <span class="input-group-btn">
+                            <button type="button" id="cmdLookupPIC_NM" name="cmdLookupPIC_NM" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup" @vsDisableButton><i class="fa fa-search"></i></button>
+                        </span>
+                    </div><!-- /input-group -->
+
+            
+                    @if (ViewData.ModelState["PIC_RUID1"] != null)
+                    {
+                            <label class="control-label" for="inputError">
+                            <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PIC_RUID1")
+                            </label>
+                    }
+                    @if (ViewData.ModelState["PIC_RUID2"] != null)
+                    {
+                            <label class="control-label" for="inputError">
+                            <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PIC_RUID2")
+                            </label>
+                    }
+                </div> <!-- /.form-group -->
+            </div> <!-- /.col-xs-12 -->
+        </div><!-- /.row -->
+    </div>
+</div>
+
+

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Tambah Departemen";
+    //Layout = "~/Views/Shared/_LayoutDialogCRUD.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "XOver" }))
+{
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title">@ViewBag.Title</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        @{Html.RenderPartial("_Inputs");}
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+        <div class="row">
+            <div class="col-xs-12">
+                <button id="cmdSubmit" type="submit" class="btn btn-primary btn-flat">Simpan Data</button>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.box-footer -->
+</div><!-- /.box -->
+    
+}
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Events");}
+
+}
+
+

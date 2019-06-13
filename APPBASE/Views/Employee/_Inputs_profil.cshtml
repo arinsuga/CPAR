@@ -1,0 +1,178 @@
+﻿@model APPBASE.Models.Employee_DetailVM
+@using APPBASE.Helpers
+
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.HiddenFor(model => model.RELIGION_RUID)
+        @if (ViewData.ModelState["RELIGION_NM0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="RELIGION_NM">Agama</label>
+
+
+            <div class="input-group input-group-sm">
+                <input type="text" id="RELIGION_NM" name="RELIGION_NM" value="@Html.DisplayFor(model => model.RELIGION_NM)" class="form-control" readonly />
+                <span class="input-group-btn">
+                    <button type="button" id="cmdLookupRELIGION_NM" name="cmdLookupRELIGION_NM" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup" @vsDisableButton><i class="fa fa-search"></i></button>
+                </span>
+            </div><!-- /input-group -->
+
+            
+            @if (ViewData.ModelState["RELIGION_NM1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("RELIGION_NM1")
+                    </label>
+            }
+            @if (ViewData.ModelState["RELIGION_NM2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("RELIGION_NM2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.HiddenFor(model => model.SEX)
+        @if (ViewData.ModelState["SEX_NM0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="SEX_NM">J.Kelamin</label>
+
+
+            <div class="input-group input-group-sm">
+                <input type="text" id="SEX_NM" name="SEX_NM" value="@Html.DisplayFor(model => model.SEX_NM)" class="form-control" readonly />
+                <span class="input-group-btn">
+                    <button type="button" id="cmdLookupSEX_NM" name="cmdLookupSEX_NM" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup" @vsDisableButton><i class="fa fa-search"></i></button>
+                </span>
+            </div><!-- /input-group -->
+
+            
+            @if (ViewData.ModelState["SEX_NM1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("SEX_NM1")
+                    </label>
+            }
+            @if (ViewData.ModelState["SEX_NM2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("SEX_NM2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.HiddenFor(model => model.MRTL_STS)
+        @if (ViewData.ModelState["MRTL_STS_NM0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="MRTL_STS_NM">Status Perkawinan</label>
+
+
+            <div class="input-group input-group-sm">
+                <input type="text" id="MRTL_STS_NM" name="MRTL_STS_NM" value="@Html.DisplayFor(model => model.MRTL_STS_NM)" class="form-control" readonly />
+                <span class="input-group-btn">
+                    <button type="button" id="cmdLookupMRTL_STS_NM" name="cmdLookupMRTL_STS_NM" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup" @vsDisableButton><i class="fa fa-search"></i></button>
+                </span>
+            </div><!-- /input-group -->
+
+            
+            @if (ViewData.ModelState["MRTL_STS_NM1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MRTL_STS_NM1")
+                    </label>
+            }
+            @if (ViewData.ModelState["MRTL_STS_NM2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MRTL_STS_NM2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["POB0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="POB">Tempat Lahir</label>
+            <input type="text" id="POB" name="POB" value="@Html.DisplayFor(model => model.POB)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["POB1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("POB1")
+                    </label>
+            }
+            @if (ViewData.ModelState["POB2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("POB2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["DOB0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="DOB">Tanggal Lahir</label>
+            <input type="text" id="DOB" name="DOB" value="@Html.DisplayFor(model => model.DOB)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["DOB1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("DOB1")
+                    </label>
+            }
+            @if (ViewData.ModelState["DOB2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("DOB2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["NPWP0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="NPWP">NPWP</label>
+            <input type="text" id="NPWP" name="NPWP" value="@Html.DisplayFor(model => model.NPWP)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["NPWP1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("NPWP1")
+                    </label>
+            }
+            @if (ViewData.ModelState["NPWP2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("NPWP2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+

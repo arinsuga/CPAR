@@ -1,0 +1,135 @@
+﻿@model APPBASE.Models.Project_DetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PROJ_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PROJ_ID">Kode [Max: @valFLAG.FLAG_MAXLENGTH_ID Character]</label>
+            <input type="text" id="PROJ_ID" name="PROJ_ID" value="@Html.DisplayFor(model => model.PROJ_ID)" class="form-control" maxlength="@valFLAG.FLAG_MAXLENGTH_ID" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["PROJ_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROJ_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PROJ_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROJ_ID2")
+                    </label>
+            }
+            @if (ViewData.ModelState["PROJ_ID3"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROJ_ID3")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PROJ_NM0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PROJ_NM">Nama Project [Max: @valFLAG.FLAG_MAXLENGTH_NM Character]</label>
+            <input type="text" id="PROJ_NM" name="PROJ_NM" value="@Html.DisplayFor(model => model.PROJ_NM)" class="form-control" maxlength="@valFLAG.FLAG_MAXLENGTH_NM" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["PROJ_NM1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROJ_NM1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PROJ_NM2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROJ_NM2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["CLIENT_RUID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="CLIENT_RUID">Nama Owner [Max: @valFLAG.FLAG_MAXLENGTH_NM Character]</label>
+            <input type="text" id="CLIENT_RUID" name="CLIENT_RUID" value="@Html.DisplayFor(model => model.CLIENT_RUID)" class="form-control" maxlength="@valFLAG.FLAG_MAXLENGTH_NM" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["CLIENT_RUID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CLIENT_RUID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["CLIENT_RUID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CLIENT_RUID2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PROJ_STS0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PROJ_STS">Status</label>
+            @if (ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) {
+
+                Html.HiddenFor(Model => Model.PROJ_STS);
+                <input type="text" id="PROJ_STS_NM" name="PROJ_STS_NM" value="@Html.DisplayFor(model => model.PROJ_STS_NM)" class="form-control" readonly />
+            }
+            else
+            {
+                <select class="form-control" id="PROJ_STS" name="PROJ_STS" >
+                    @foreach (var item in Model.PROJ_STS_LOV)
+                    {
+                        if (Model.PROJ_STS != null)
+                        {
+                            if (Model.PROJ_STS == item.RUID)
+                            { <option value="@item.RUID" selected>@item.LOV_NM</option> }
+                            else
+                            { <option value="@item.RUID">@item.LOV_NM</option> }
+                        }
+                        else
+                        { <option value="@item.RUID">@item.LOV_NM</option> }
+
+                    }
+                </select>
+            }
+            
+
+            @if (ViewData.ModelState["PROJ_STS1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROJ_STS1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PROJ_STS2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROJ_STS2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+

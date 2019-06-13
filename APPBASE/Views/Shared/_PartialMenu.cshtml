@@ -1,0 +1,19 @@
+﻿@using APPBASE.Helpers
+
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="@Url.Action("Index", "Home")"  style="background-color:#00C0EF;">
+                                <i class="fa fa-home"></i> <span>Home</span>
+                            </a>
+                        </li>
+
+                        @Html.Raw(hlpMenuDropDown.DisplayMenu("treeview-menu", "treeview", "", "", "", "CPAR_MASTER",
+                                                                       "<i class=\"fa fa-users\"></i>", "<span></span><i class=\"fa fa-angle-left pull-right\"></i>"))
+                        @Html.Raw(hlpMenuDropDown.DisplayMenu("treeview-menu", "treeview", "", "", "", "CPAR_SUMBERCPAR",
+                                                                                "<i class=\"fa fa-thumbs-o-up\"></i>", "<span></span><i class=\"fa fa-angle-left pull-right\"></i>"))
+                        @Html.Raw(hlpMenuDropDown.DisplayMenu("treeview-menu", "treeview", "", "", "", "CPAR_LOGBOOK",
+                                                                         "<i class=\"fa fa-suitcase\"></i>", "<span></span><i class=\"fa fa-angle-left pull-right\"></i>"))
+                        @Html.Raw(hlpMenuDropDown.DisplayMenu("treeview-menu", "treeview", "", "", "", "CPAR_USER",
+                                                                         "<i class=\"fa fa-user\"></i>", "<span></span><i class=\"fa fa-angle-left pull-right\"></i>"))
+                    </ul>

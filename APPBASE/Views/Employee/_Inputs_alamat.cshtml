@@ -1,0 +1,31 @@
+﻿<div class="row">
+    <div class="col-xs-6">
+        <div class="box box-solid bg-teal">
+            <div class="box-header">
+                <h3 class="box-title">
+                    <i class="fa fa-credit-card"></i> KTP
+                </h3>
+            </div> <!-- /.box-header -->
+            
+            <div class="box-body">
+                @{Html.RenderPartial("_Inputs_alamatKTP");}
+            </div> <!-- /.box-body -->
+        </div> <!-- /.box box-solid -->
+    </div> <!-- /.col-xs-6 -->
+
+    <div class="col-xs-6">
+        <div class="box box-solid bg-yellow">
+            <div class="box-header">
+                <h3 class="box-title">
+                    <i class="fa fa-home"></i> Domisili
+                </h3>
+            </div> <!-- /.box-header -->
+            
+            <div class="box-body">
+                @{Html.RenderPartial("_Inputs_alamatDOM");}
+            </div> <!-- /.box-body -->
+        </div> <!-- /.box box-solid -->
+    </div> <!-- /.col-xs-6 -->
+</div><!-- /.row -->
+
+

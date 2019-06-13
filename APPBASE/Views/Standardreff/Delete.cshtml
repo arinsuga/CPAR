@@ -1,0 +1,54 @@
+﻿@model APPBASE.Models.Standardreff_DetailVM
+@using APPBASE.Helpers
+
+@{
+    ViewBag.Title = "Hapus Referensi/Standar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section includeBOTTOM {
+    @Scripts.Render("~/bundles/JSInputMask")
+}
+
+
+@using (Html.BeginForm())
+{
+    if (ViewData.ModelState["DELETE0"] != null)
+    {
+        <!-- Validation -->
+        <div class="alert alert-danger alert-dismissable">
+            <i class="fa fa-warning"></i>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <b>Perhatian!</b> Data tidak bisa dihapus karena : 
+            @if (ViewData.ModelState["DELETE1"] != null)
+            { <div>@Html.ValidationMessage("DELETE1")</div> }
+            @if (ViewData.ModelState["DELETE2"] != null)
+            { <div>@Html.ValidationMessage("DELETE2")</div> }
+        </div>
+    }
+    else { Html.RenderPartial("_PartialConfirmDelete"); }
+
+    <div class="box box-info">
+        <div class="box-header">
+            <h3 class="box-title"></h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            @{Html.RenderPartial("_Inputs");}
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.box-footer -->
+    </div><!-- /.box -->
+}
+
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Events");}
+
+}
+

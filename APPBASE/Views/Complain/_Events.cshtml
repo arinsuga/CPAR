@@ -1,0 +1,48 @@
+﻿
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("[data-mask]").inputmask(); //Optional if contains date field(s)
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        $("#cmdLookupRECIPIENT_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'RECIPIENT_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'RECIPIENT_NM'; //NM
+            showLookup('Lookup/ShowEmp', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        $("#cmdLookupPIC_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'PIC_RUID'; //RUID
+            vaTargetTag[1] = '';   //ID
+            vaTargetTag[2] = 'PIC_NM'; //NM
+            showLookup('Lookup/ShowEmp', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        $("#cmdLookupPROJ_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'PROJ_RUID'; //RUID
+            vaTargetTag[1] = 'PROJ_ID';   //ID
+            vaTargetTag[2] = 'PROJ_NM'; //NM
+            showLookup('Complain/ShowProject', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+
+    }); //End $(document).ready
+</script>
+

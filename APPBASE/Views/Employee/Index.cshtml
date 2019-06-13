@@ -1,0 +1,97 @@
+﻿@model IEnumerable<APPBASE.Models.Employee_ListVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "Info Karyawan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section TitleIcon {
+    <i class="fa fa-users"></i>
+}
+
+@{string vsClassBP_STS = ""; string vsClassRES_STS = "";}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        <div class="box-tools">
+            <div class="input-group">
+                <input type="text" id="searchValue" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Cari Nama"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-flat btn-sm btn-info"><i class="fa fa-search"></i></button>
+                    <a href="@Url.Action("Create")" class="btn btn-flat btn-sm btn-warning" style="margin-left:5px; color:White;"><i class="fa fa-plus"></i> Tambah Karyawan</a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="col-xs-4">Action</th>
+                    <th class="col-xs-3">Nama</th>
+                    <th class="col-xs-3">Departemen</th>
+                    <th class="col-xs-1">Jabatan</th>
+                    <th class="col-xs-1">Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null) {
+                    <tr>
+                        <td colspan="4" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in Model)
+                {
+                    
+                    <tr>
+                        <td class="col-xs-4">
+                            <a href="@Url.Action("Details", new { id = item.RUID })" class="btn btn-flat btn-sm btn-success" style="margin-left:5px; color:White;"><i class="fa fa-eye"></i> View Detail</a>
+                        </td>
+                        <td class="col-xs-3 SEARCHABLE_ROWS">
+                            @{
+                                vsClassBP_STS = "badge bg-green";
+                                if (item.BP_STS == valFLAG.FLAG_EMPBPSTS_INACTIVE) { vsClassBP_STS = "badge bg-red"; }
+                             }
+                            <div class="@vsClassBP_STS" style="font-size:0.7em;">@Html.DisplayFor(modelItem => item.BP_STS_NM)</div>
+                            <div>@Html.DisplayFor(modelItem => item.RES_NM1)</div>
+                        </td>
+                        <td class="col-xs-3">@Html.DisplayFor(modelItem => item.DEPT_NM)</td>
+                        <td class="col-xs-1">@Html.DisplayFor(modelItem => item.JOB_TITLE_NM)</td>
+
+                        <td class="col-xs-1">
+                            @{
+                                vsClassRES_STS = "badge bg-grey";
+
+                                if (item.RES_STS == valFLAG.FLAG_EMPSTS_PRMT) { vsClassRES_STS = "badge bg-green"; }
+                                if (item.RES_STS == valFLAG.FLAG_EMPSTS_CONT) { vsClassRES_STS = "badge bg-yellow"; }
+                              }
+                            <span class="@vsClassRES_STS">@Html.DisplayFor(modelItem => item.RES_STS_NM)</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+    });   //End $(document).ready
+</script>
+
+}

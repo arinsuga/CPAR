@@ -1,0 +1,122 @@
+﻿@model APPBASE.Models.Employee_DetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; }
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.HiddenFor(model => model.CNTRY_RUID_IC)
+        @if (ViewData.ModelState["CNTRY_NM_IC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="CNTRY_NM_IC">Negara</label>
+
+
+            <div class="input-group input-group-sm">
+                <input type="text" id="CNTRY_NM_IC" name="CNTRY_NM_IC" value="@Html.DisplayFor(model => model.CNTRY_NM_IC)" class="form-control" readonly />
+                <span class="input-group-btn">
+                    <button type="button" id="cmdLookupCNTRY_NM_IC" name="cmdLookupCNTRY_NM_IC" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup" @vsDisableButton><i class="fa fa-search"></i></button>
+                </span>
+            </div><!-- /input-group -->
+
+            
+            @if (ViewData.ModelState["CNTRY_NM_IC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CNTRY_NM_IC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["CNTRY_NM_IC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CNTRY_NM_IC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @Html.HiddenFor(model => model.CITY_RUID_IC)
+        @if (ViewData.ModelState["CITY_NM_IC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="CITY_NM_IC">Kota</label>
+
+
+            <div class="input-group input-group-sm">
+                <input type="text" id="CITY_NM_IC" name="CITY_NM_IC" value="@Html.DisplayFor(model => model.CITY_NM_IC)" class="form-control" readonly />
+                <span class="input-group-btn">
+                    <button type="button" id="cmdLookupCITY_NM_IC" name="cmdLookupCITY_NM_IC" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup" @vsDisableButton><i class="fa fa-search"></i></button>
+                </span>
+            </div><!-- /input-group -->
+
+            
+            @if (ViewData.ModelState["CITY_NM_IC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CITY_NM_IC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["CITY_NM_IC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CITY_NM_IC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["ZIP_IC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="ZIP_IC">Kode Pos</label>
+            <input type="text" id="ZIP_IC" name="ZIP_IC" value="@Html.DisplayFor(model => model.ZIP_IC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["ZIP_IC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("ZIP_IC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["ZIP_IC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("ZIP_IC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["ADDR1_IC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="ADDR1_IC">Alamat</label>
+            <input type="text" id="ADDR1_IC" name="ADDR1_IC" value="@Html.DisplayFor(model => model.ADDR1_IC)" class="form-control" @vsReadonlyTextbox />
+            <input type="text" id="ADDR2_IC" name="ADDR2_IC" value="@Html.DisplayFor(model => model.ADDR2_IC)" class="form-control" @vsReadonlyTextbox />
+            <input type="text" id="ADDR3_IC" name="ADDR3_IC" value="@Html.DisplayFor(model => model.ADDR3_IC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["ADDR1_IC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("ADDR1_IC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["ADDR1_IC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("ADDR1_IC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+

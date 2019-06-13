@@ -1,0 +1,50 @@
+﻿@model APPBASE.Models.CPAR_DetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "Rubah " + ViewBag.Subtitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section includeBOTTOM {
+    @Scripts.Render("~/bundles/JSInputMask")
+}
+
+@using (Html.BeginForm())
+{
+
+
+<div class="box box-info">
+    @Html.HiddenFor(model => model.RUID)
+    @Html.HiddenFor(model => model.COMPLAIN_RUID)
+    @Html.HiddenFor(model => model.OWNER_NM)
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        @{Html.RenderPartial("~/Views/CPAR/_Inputs.cshtml");}
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-primary btn-flat">Simpan Data</button>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.box-footer -->
+</div><!-- /.box -->
+
+          Html.RenderPartial("_PartialDialogLookup_additems");
+}
+
+<!-- Modal -->
+@{Html.RenderPartial("_PartialDialogLookup");}
+
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("~/Views/CPAR/_Events.cshtml");}
+
+}
+

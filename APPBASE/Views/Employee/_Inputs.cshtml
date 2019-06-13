@@ -1,0 +1,120 @@
+﻿@model APPBASE.Models.Employee_DetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcapp
+
+@{string vsErrClass = "";}
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-4">
+                        <!-- Navigation - folders-->
+                        <div style="margin-top: 15px;">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li>
+                        <div style="text-align:center;">
+                            @if (Model != null)
+                            {
+                                <img id="imgUPLOAD_IMG" src="@Url.Content("~/")App_DataUpload/EmpPhoto/@Utility_FileUploadDownload.getImage_Employee(Model.IMG_SRC)" class="img-thumbnail" alt="Foto Karyawan" />
+                            }
+                            else
+                            {
+                                <img id="imgUPLOAD_IMG" src="@Url.Content("~/")App_DataUpload/EmpPhoto/EmpPhotoNA.jpg" class="img-thumbnail" alt="Foto Karyawan" />
+                            }
+                            <div>@Html.DisplayFor(model => model.RES_NM1)</div>
+                            @if (ViewData.ModelState["IMG_SRC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = "has-error"; }
+                            <div class="form-group @vsErrClass">
+                                @Html.HiddenFor(model => model.IMG_SRC)
+                                @if (ViewData.ModelState["IMG_SRC1"] != null)
+                                {
+                                        <label class="control-label" for="inputError">
+                                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("IMG_SRC1")
+                                        </label>
+                                }
+                                @if (ViewData.ModelState["IMG_SRC2"] != null)
+                                {
+                                        <label class="control-label" for="inputError">
+                                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("IMG_SRC2")
+                                        </label>
+                                }
+                            </div>
+                            
+                            
+                            @if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE)||(ViewBag.CRUD_type == hlpFlags_CRUDOption.UPDATE)) {
+                                <!-- Upload Photo btn -->
+                                <button type="button" id="cmdUPLOAD_IMG" name="cmdUPLOAD_IMG" class="btn btn-primary btn-flat btn-block" style="margin-top:2px;">Upload Photo</button>
+                            }
+                            <span id="FileimageContainer"><input type="file" id="Fileimage" name="Fileimage" accept="image/*; capture=camera" /></span>
+                        </div>
+                                </li>
+                                <li class="header"></li>
+                                <li >
+                                    @{Html.RenderPartial("_Inputs_main");}
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- /.col (LEFT) -->
+                    <div class="col-md-9 col-sm-8">
+                        <div class="box-group" id="accordion">
+                            <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                            <div class="panel box box-danger">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        <i class="fa fa-bars"></i> 
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#Profil">
+                                            Profil
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="Profil" class="panel-collapse collapse in">
+                                    <div class="box-body">
+                                        @{Html.RenderPartial("_Inputs_profil");}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel box box-warning">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        <i class="fa fa-phone"></i>
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#Kontak">
+                                            Kontak
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="Kontak" class="panel-collapse collapse">
+                                    <div class="box-body">
+                                        @{Html.RenderPartial("_Inputs_kontak");}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel box box-success">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        <i class="fa fa-home"></i>
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#Alamat">
+                                            Alamat
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="Alamat" class="panel-collapse collapse">
+                                    <div class="box-body">
+                                        @{Html.RenderPartial("_Inputs_alamat");}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel box box-info">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        <i class="fa fa-briefcase"></i>
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#Pekerjaan">
+                                            Pekerjaan
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="Pekerjaan" class="panel-collapse collapse">
+                                    <div class="box-body">
+                                        @{Html.RenderPartial("_Inputs_pekerjaan");}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.col (RIGHT) -->
+                </div><!-- /.row -->

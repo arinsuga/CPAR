@@ -1,0 +1,352 @@
+﻿@model APPBASE.Models.CPAR_VerifyVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group @vsErrClass">
+            <label for="CPAR_RESOLUTION1">Akar Penyebab</label>
+            <textarea id="CPAR_RESOLUTION1" name="CPAR_RESOLUTION1" class="form-control" readonly>@Html.DisplayFor(model => model.CPAR_RESOLUTION1)</textarea>
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group @vsErrClass">
+            <label for="CPAR_RESOLUTION2">Tindakan Koreksi</label>
+            <textarea id="CPAR_RESOLUTION2" name="CPAR_RESOLUTION2" class="form-control" readonly>@Html.DisplayFor(model => model.CPAR_RESOLUTION2)</textarea>
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group @vsErrClass">
+            <label for="CPAR_RESOLUTION3">Tindakan Korektif</label>
+            <textarea id="CPAR_RESOLUTION3" name="CPAR_RESOLUTION3" class="form-control" readonly>@Html.DisplayFor(model => model.CPAR_RESOLUTION3)</textarea>
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<hr />
+
+<div class="row">
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS1_DT0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="VFKS1_DT">Tanggal</label>
+            <input type="text" id="VFKS1_DT" name="VFKS1_DT" value="@Html.DisplayFor(model => model.VFKS1_DT)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["VFKS1_DT1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS1_DT1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS1_DT2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS1_DT2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-4 -->
+    <div class="col-xs-8">
+        @if (ViewData.ModelState["VFKS1_DESC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="VFKS1_DESC">Komentar</label>
+            <input type="text" id="VFKS1_DESC" name="VFKS1_DESC" value="@Html.DisplayFor(model => model.VFKS1_DESC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS1_DESC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS1_DESC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS1_DESC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS1_DESC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-8 -->
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS1_PIC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="VFKS1_PIC">Diverifikasi oleh</label>
+            <input type="text" id="VFKS1_PIC" name="VFKS1_PIC" value="@Html.DisplayFor(model => model.VFKS1_PIC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS1_PIC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS1_PIC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS1_PIC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS1_PIC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-2 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS2_DT0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS2_DT" name="VFKS2_DT" value="@Html.DisplayFor(model => model.VFKS2_DT)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["VFKS2_DT1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS2_DT1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS2_DT2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS2_DT2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-4 -->
+    <div class="col-xs-8">
+        @if (ViewData.ModelState["VFKS2_DESC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS2_DESC" name="VFKS2_DESC" value="@Html.DisplayFor(model => model.VFKS2_DESC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS2_DESC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS2_DESC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS2_DESC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS2_DESC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-8 -->
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS2_PIC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS2_PIC" name="VFKS2_PIC" value="@Html.DisplayFor(model => model.VFKS2_PIC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS2_PIC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS2_PIC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS2_PIC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS2_PIC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-2 -->
+</div><!-- /.row -->
+
+
+<div class="row">
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS3_DT0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS3_DT" name="VFKS3_DT" value="@Html.DisplayFor(model => model.VFKS3_DT)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["VFKS3_DT1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS3_DT1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS3_DT2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS3_DT2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-4 -->
+    <div class="col-xs-8">
+        @if (ViewData.ModelState["VFKS3_DESC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS3_DESC" name="VFKS3_DESC" value="@Html.DisplayFor(model => model.VFKS3_DESC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS3_DESC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS3_DESC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS3_DESC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS3_DESC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-8 -->
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS3_PIC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS3_PIC" name="VFKS3_PIC" value="@Html.DisplayFor(model => model.VFKS3_PIC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS3_PIC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS3_PIC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS3_PIC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS3_PIC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-2 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS4_DT0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS4_DT" name="VFKS4_DT" value="@Html.DisplayFor(model => model.VFKS4_DT)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["VFKS4_DT1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS4_DT1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS4_DT2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS4_DT2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-4 -->
+    <div class="col-xs-8">
+        @if (ViewData.ModelState["VFKS4_DESC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS4_DESC" name="VFKS4_DESC" value="@Html.DisplayFor(model => model.VFKS4_DESC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS4_DESC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS4_DESC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS4_DESC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS4_DESC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-8 -->
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS4_PIC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS4_PIC" name="VFKS4_PIC" value="@Html.DisplayFor(model => model.VFKS4_PIC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS4_PIC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS4_PIC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS4_PIC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS4_PIC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-2 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS5_DT0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS5_DT" name="VFKS5_DT" value="@Html.DisplayFor(model => model.VFKS5_DT)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["VFKS5_DT1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS5_DT1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS5_DT2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS5_DT2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-4 -->
+    <div class="col-xs-8">
+        @if (ViewData.ModelState["VFKS5_DESC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS5_DESC" name="VFKS5_DESC" value="@Html.DisplayFor(model => model.VFKS5_DESC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS5_DESC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS5_DESC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS5_DESC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS5_DESC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-8 -->
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["VFKS5_PIC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <input type="text" id="VFKS5_PIC" name="VFKS5_PIC" value="@Html.DisplayFor(model => model.VFKS5_PIC)" class="form-control" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["VFKS5_PIC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS5_PIC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["VFKS5_PIC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("VFKS5_PIC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-2 -->
+</div><!-- /.row -->
+
+

@@ -1,0 +1,69 @@
+﻿@model APPBASE.Models.CPAR_DetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["STDREF_RUID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="STDREF_NM">Referensi/Standar</label>
+            <div class="input-group input-group-sm">
+            </div><!-- /input-group -->
+            
+            <button type="button" id="cmdLookupSTDREF_NM" name="cmdLookupSTDREF_NM" class="btn btn-info btn-flat" data-toggle="modal" data-target="#DialogLookup_additems" @vsDisableButton><i class="fa fa-plus"></i></button>
+            <div id="RSLTDATA_TAG">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Referensi Standard</th>
+                            <th style="text-align:center;">
+                            </th>
+                        </tr>
+                        @{int i = 0;}
+                        @foreach (var item in Model.STDREF_LIST)
+                        {
+                        <tr>
+                            <td>
+                                <input type="hidden" id="STDREF_LIST[@i].RUID" name="STDREF_LIST[@i].RUID" class="EXISTING_ITEMS" value="@item.RUID" />
+                                <input type="hidden" id="STDREF_LIST[@i].STDREF_RUID" name="STDREF_LIST[@i].STDREF_RUID" class="EXISTING_ITEMS" value="@item.STDREF_RUID" />
+
+                                <input type="hidden" id="STDREF_LIST[@i].STDREF_ID" name="STDREF_LIST[@i].STDREF_ID" class="EXISTING_ITEMS" value="@item.STDREF_ID" />
+                                <input type="hidden" id="STDREF_LIST[@i].STDREF_NM" name="STDREF_LIST[@i].STDREF_NM" class="EXISTING_ITEMS" value="@item.STDREF_NM" />
+                                @item.STDREF_ID
+                            </td>
+                            <td>@item.STDREF_NM</td>
+                            <td style="text-align:center;"><button type="button" class="cmdREMOVE_ITEM btn btn-danger btn-flat" @vsDisableButton><i class="fa fa-trash-o"></i></button></td>
+                        </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div> <!-- /#RSLTDATA_TAG -->
+
+            @if (ViewData.ModelState["STDREF_RUID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("STDREF_RUID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["STDREF_RUID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("STDREF_RUID2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+

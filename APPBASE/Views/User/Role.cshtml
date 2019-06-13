@@ -1,0 +1,132 @@
+﻿@model APPBASE.Models.Userrole_DetailVM
+@using APPBASE.Helpers
+
+@{
+    ViewBag.Title = "Pengaturan Hak Akses User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string vsmenuGroupClass = "";
+    string vsmenuItemStyle = "";
+}
+
+@using (Html.BeginForm()) {
+    
+
+<!-- =========================================================== -->    
+    
+
+    <div class="box box-info">
+        <div class="box-header">
+            <div class="row">
+                <div class="col-md-3 col-sm-4">
+                    <h3 class="box-title"></h3>
+                </div>
+
+                <div class="col-md-9 col-sm-8">
+                    <h3 class="box-title"></h3>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-3 col-sm-4">
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.ROLE_NM, new { id = "ROLE_NM", @class = "form-control", @readonly = "readonly" })
+                        <span class="input-group-btn">
+                            <button class="btn btn-flat btn-warning" type="button" id="cmdLookupROLE_NM" name="cmdLookupROLE_NM" data-toggle="modal" data-target="#DialogLookup">
+                                <i class="fa fa-key"></i>
+                            </button>
+                        </span>
+                        @Html.ValidationMessageFor(model => model.USR_ID)
+                        @Html.HiddenFor(model => model.ROLE_RUID, new { id = "ROLE_RUID" })
+                        @Html.HiddenFor(model => model.RUID, new { id = "RUID" })
+                    </div><!-- /input-group -->
+                    <!-- Navigation - folders-->
+                    <div style="margin-top: 15px;">
+                        @{Html.RenderPartial("_Inputs");}
+                    </div>
+                </div><!-- /.col (LEFT) -->
+                <div class="col-md-9 col-sm-8">
+                    <div id="RSLTDATA_TAG" class="table-responsive no-padding">
+                            @if (@Model != null) {
+                                
+                                if (Model.Userrolemenu_ListVM.Count <= 0) {
+                                    <div class="table-responsive">
+                                        <table class="table table-mailbox table-hover">
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    Pilih Hak Akses
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
+                            }
+                            
+                            @if (Model != null)
+                            {
+                                if (Model.Userrolemenu_ListVM.Count > 0)
+                                {
+                                    <table class="table table-mailbox table-hover">
+                                        @for (int i = 0; i < Model.Userrolemenu_ListVM.Count; i++)
+                                        {
+                                            if (Model.Userrolemenu_ListVM[i].MNU_TYPE == "GRP") { vsmenuGroupClass = "class=\"bg-aqua\""; vsmenuItemStyle = ""; }
+                                            else { vsmenuGroupClass = ""; vsmenuItemStyle = "style=\"padding-left:" + (Model.Userrolemenu_ListVM[i].MNU_LEVEL*10).ToString() + "px;\""; }
+                                            
+                                            <tr>
+                                                <td @Html.Raw(vsmenuGroupClass) @Html.Raw(vsmenuItemStyle)>
+                                                    @Model.Userrolemenu_ListVM[i].MNU_CAPTION
+                                                    <input type="hidden" name="Userrolemenu_ListVM[@i].MNU_RUID" value="@Model.Userrolemenu_ListVM[i].MNU_RUID" />
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                            }
+                    </div><!-- /.table-responsive --> <!-- /#RSLTDATA_TAG -->
+                </div><!-- /.col (RIGHT) -->
+            </div><!-- /.row -->
+        </div><!-- /.box-body -->
+        <div class="box-footer clearfix">
+            <div class="pull-right">
+                <button type="submit" class="btn btn-flat btn-primary">Simpan</button>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div><!-- box-footer -->
+    </div><!-- /.box -->
+    
+
+}
+
+<!-- Modal -->
+@{Html.RenderPartial("_PartialDialogLookup");}
+
+
+@section Scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Command LookUp [Employee=]
+        $("#cmdLookupROLE_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            showLookup_LoadSingle('Lookup/ShowRole_getDatalist', '', vaSearchValue,
+                                  'User/_Rolemenu_showDatalist', 'RSLTDATA_TAG',
+                                  'ROLE_RUID', '', 'ROLE_NM');
+        }); //End  $("#btnLookup").click
+        //Command Reset
+        $("#cmdReset").click(function () {
+            return true;
+        });
+    }); //End $(document).ready
+</script>
+
+}

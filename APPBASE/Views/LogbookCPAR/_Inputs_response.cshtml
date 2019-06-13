@@ -1,0 +1,110 @@
+﻿@model APPBASE.Models.CPAR_VerifyVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["CPAR_FINISH_DT0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="CPAR_FINISH_DT">Tanggal Penyelesaian</label>
+            <input type="text" id="CPAR_FINISH_DT" name="CPAR_FINISH_DT" value="@Html.DisplayFor(model => model.CPAR_FINISH_DT)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["CPAR_FINISH_DT1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CPAR_FINISH_DT1")
+                    </label>
+            }
+            @if (ViewData.ModelState["CPAR_FINISH_DT2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CPAR_FINISH_DT2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["CPAR_RESOLUTION10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="CPAR_RESOLUTION1">Akar Penyebab [Max: @valFLAG.FLAG_MAXLENGTH_DESCLONG Character]</label>
+            <textarea id="CPAR_RESOLUTION1" name="CPAR_RESOLUTION1" class="form-control" maxlength="@valFLAG.FLAG_MAXLENGTH_DESCLONG" @vsReadonlyTextbox>@Html.DisplayFor(model => model.CPAR_RESOLUTION1)</textarea>
+
+
+            @if (ViewData.ModelState["CPAR_RESOLUTION11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CPAR_RESOLUTION11")
+                    </label>
+            }
+            @if (ViewData.ModelState["CPAR_RESOLUTION12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CPAR_RESOLUTION12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["CPAR_RESOLUTION20"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="CPAR_RESOLUTION2">Tindakan Koreksi [Max: @valFLAG.FLAG_MAXLENGTH_DESCLONG Character]</label>
+            <textarea id="CPAR_RESOLUTION2" name="CPAR_RESOLUTION2" class="form-control" maxlength="@valFLAG.FLAG_MAXLENGTH_DESCLONG" @vsReadonlyTextbox>@Html.DisplayFor(model => model.CPAR_RESOLUTION2)</textarea>
+
+
+            @if (ViewData.ModelState["CPAR_RESOLUTION21"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CPAR_RESOLUTION21")
+                    </label>
+            }
+            @if (ViewData.ModelState["CPAR_RESOLUTION22"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CPAR_RESOLUTION22")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["CPAR_RESOLUTION30"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="CPAR_RESOLUTION3">Tindakan Korektif [Max: @valFLAG.FLAG_MAXLENGTH_DESCLONG Character]</label>
+            <textarea id="CPAR_RESOLUTION3" name="CPAR_RESOLUTION3" class="form-control" maxlength="@valFLAG.FLAG_MAXLENGTH_DESCLONG" @vsReadonlyTextbox>@Html.DisplayFor(model => model.CPAR_RESOLUTION3)</textarea>
+
+
+            @if (ViewData.ModelState["CPAR_RESOLUTION31"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CPAR_RESOLUTION31")
+                    </label>
+            }
+            @if (ViewData.ModelState["CPAR_RESOLUTION32"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("CPAR_RESOLUTION32")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+

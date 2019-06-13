@@ -1,0 +1,22 @@
+﻿@model APPBASE.Models.CPAR_VerifyVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+
+<table>
+    <tr>
+        <td><span class="title-bold">Penemu / Auditor</span></td>
+        <td> : @Model.AUDITORDEPT_NM - @Model.AUDITOR_NM</td>
+    </tr>
+
+    <tr>
+        <td><span class="title-bold">Ditujukan / Auditee</span></td>
+        <td> : @Model.AUDITEEDEPT_NM - @Model.AUDITEE_NM</td>
+    </tr>
+
+    <tr>
+        <td><span class="title-bold">Tanggal</span></td>
+        <td> : @hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(Model.CPAR_DT)</td>
+    </tr>
+</table>
+
